@@ -175,3 +175,11 @@ body {
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
     outline: none;
 }
+
+.no-members-msg {
+    grid-column: 1 / -1; /* Span across all columns */
+    text-align: center;
+    font-size: 1.2rem;
+    color: #64748b;
+    padding: 3rem;
+}
