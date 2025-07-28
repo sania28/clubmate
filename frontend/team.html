@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Management - ClubMate</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="team.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <i class="fas fa-robot"></i>
+                <span>ClubMate</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html#home" class="nav-link">Home</a></li>
+                <li><a href="../index.html#features" class="nav-link">Features</a></li>
+                <li><a href="../index.html#about" class="nav-link">About</a></li>
+                <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="team-main">
+        <div class="container">
+            <div class="team-header">
+                <h1>Meet Our Team</h1>
+                <button id="addMemberBtn" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add Member</button>
+            </div>
+            <div id="teamGrid" class="team-grid">
+                </div>
+        </div>
+    </main>
+
+    <div id="memberModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2 id="modalTitle">Add New Member</h2>
+            <form id="memberForm">
+                <div class="form-group">
+                    <label for="memberName">Full Name</label>
+                    <input type="text" id="memberName" placeholder="e.g., Ada Lovelace" required>
+                </div>
+                <div class="form-group">
+                    <label for="memberRole">Role</label>
+                    <input type="text" id="memberRole" placeholder="e.g., President" required>
+                </div>
+                <div class="form-group">
+                    <label for="memberImg">Image URL</label>
+                    <input type="text" id="memberImg" placeholder="e.g., https://example.com/image.jpg">
+                </div>
+                <div class="form-group">
+                    <label for="memberBio">Short Bio</label>
+                    <textarea id="memberBio" rows="3" placeholder="A brief description of the member's skills and interests."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Save Member</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="team.js"></script>
+</body>
+</html>
