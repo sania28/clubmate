@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const memberModal = document.getElementById('memberModal');
     const closeModalBtn = document.querySelector('.close-btn');
     const memberForm = document.getElementById('memberForm');
+    const modalTitle = document.getElementById('modalTitle');
+    const memberIndexInput = document.getElementById('memberIndex');
 
     // Dummy data for initial team members
     let teamMembers = [
@@ -46,36 +48,74 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Show modal
+    // Open Modal for adding a new member
     addMemberBtn.addEventListener('click', () => {
         memberModal.style.display = 'block';
-        document.getElementById('modalTitle').innerText = 'Add New Member';
+        modalTitle.innerText = 'Add New Member';
         memberForm.reset();
+        memberIndexInput.value = '';
     });
 
     // Hide modal
-    closeModalBtn.addEventListener('click', () => {
+    const closeModal = () => {
         memberModal.style.display = 'none';
-    });
-
+    };
+    closeModalBtn.addEventListener('click', closeModal);
     window.addEventListener('click', (e) => {
         if (e.target == memberModal) {
-            memberModal.style.display = 'none';
+            closeModal();
         }
     });
 
-    // Handle form submission
+    // Handle form submission for both add and edit
     memberForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        const newMember = {
+        const memberData = {
             name: document.getElementById('memberName').value,
             role: document.getElementById('memberRole').value,
             img: document.getElementById('memberImg').value || 'https://i.pravatar.cc/150',
             bio: document.getElementById('memberBio').value
         };
-        teamMembers.push(newMember);
+
+        const index = memberIndexInput.value;
+        if (index) {
+            // Editing existing member
+            teamMembers[index] = memberData;
+        } else {
+            // Adding new member
+            teamMembers.push(memberData);
+        }
+
         renderTeam();
-        memberModal.style.display = 'none';
+        closeModal();
+    });
+
+    // Event delegation for edit and delete buttons
+    teamGrid.addEventListener('click', (e) => {
+        const card = e.target.closest('.team-card');
+        if (!card) return;
+
+        const index = card.dataset.index;
+
+        // Handle Edit
+        if (e.target.closest('.edit-btn')) {
+            const member = teamMembers[index];
+            modalTitle.innerText = 'Edit Member';
+            document.getElementById('memberName').value = member.name;
+            document.getElementById('memberRole').value = member.role;
+            document.getElementById('memberImg').value = member.img;
+            document.getElementById('memberBio').value = member.bio;
+            memberIndexInput.value = index;
+            memberModal.style.display = 'block';
+        }
+
+        // Handle Delete
+        if (e.target.closest('.delete-btn')) {
+            if (confirm(`Are you sure you want to delete ${teamMembers[index].name}?`)) {
+                teamMembers.splice(index, 1);
+                renderTeam();
+            }
+        }
     });
 
     // Initial render
