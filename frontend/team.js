@@ -7,45 +7,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalTitle = document.getElementById('modalTitle');
     const memberIndexInput = document.getElementById('memberIndex');
 
-    // Dummy data for initial team members
-    let teamMembers = [
-        {
-            name: 'Sania Mujtaba',
-            role: 'Project Admin',
-            img: 'https://avatars.githubusercontent.com/u/1024025?v=4',
-            bio: 'Lead developer and project manager for ClubMate.'
-        },
-        {
-            name: 'Alex Doe',
-            role: 'Frontend Developer',
-            img: 'https://i.pravatar.cc/150?img=11',
-            bio: 'Specializes in creating responsive and intuitive user interfaces.'
-        },
-        {
-            name: 'Jane Smith',
-            role: 'Backend Developer',
-            img: 'https://i.pravatar.cc/150?img=12',
-            bio: 'Manages the server-side logic and database integration.'
-        }
-    ];
+    // Start with an empty array for team members
+    let teamMembers = [];
 
     // Function to render team members
     const renderTeam = () => {
         teamGrid.innerHTML = '';
-        teamMembers.forEach((member, index) => {
-            const memberCard = `
-                <div class="team-card" data-index="${index}">
-                    <img src="${member.img}" alt="${member.name}" class="team-card-img">
-                    <h3 class="team-card-name">${member.name}</h3>
-                    <p class="team-card-role">${member.role}</p>
-                    <div class="team-card-actions">
-                        <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                        <button class="action-btn delete-btn"><i class="fas fa-trash-alt"></i></button>
+        if (teamMembers.length === 0) {
+            teamGrid.innerHTML = '<p class="no-members-msg">No team members yet. Click "Add Member" to get started!</p>';
+        } else {
+            teamMembers.forEach((member, index) => {
+                const memberCard = `
+                    <div class="team-card" data-index="${index}">
+                        <img src="${member.img}" alt="${member.name}" class="team-card-img">
+                        <h3 class="team-card-name">${member.name}</h3>
+                        <p class="team-card-role">${member.role}</p>
+                        <div class="team-card-actions">
+                            <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                            <button class="action-btn delete-btn"><i class="fas fa-trash-alt"></i></button>
+                        </div>
                     </div>
-                </div>
-            `;
-            teamGrid.innerHTML += memberCard;
-        });
+                `;
+                teamGrid.innerHTML += memberCard;
+            });
+        }
     };
 
     // Open Modal for adding a new member
