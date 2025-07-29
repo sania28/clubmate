@@ -5,14 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login - ClubMate</title>
   <link rel="stylesheet" href="auth.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
   <div class="auth-container">
     <h2>Login</h2>
     <form id="loginForm">
       <input type="email" id="loginEmail" placeholder="Email" required />
-      <input type="password" id="loginPassword" placeholder="Password" required />
-      <button type="submit">Login</button>
+      <div class="relative">
+      <input type="password" id="loginPassword" placeholder="Password" required  />
+      <span class="toggle-password" onclick="togglePassword('loginPassword')">
+      </span>
+      </div>
+      <div class="forgot-link">
+        <a href="#">Forgot Password?</a>
+      </div>
+      <button type="submit" class="login-button">Login</button>
     </form>
     <p>Don't have an account? <a href="signup.html">Sign up</a></p>
   </div>

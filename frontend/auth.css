@@ -1,40 +1,185 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+  font-family:'Inter', Arial, sans-serif;
+  background: linear-gradient(135deg, #e0c3fc, #f9f9f9);
+
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  margin: 0;
+  padding: 20px;
 }
 
 .auth-container {
-  background: white;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.1);
-  width: 300px;
-  text-align: center;
+background: rgba(255, 255, 255, 0.15);
+backdrop-filter: blur(20px);
+padding: 2.5rem;
+border-radius: 20px;
+max-width: 400px;
+width: 100%;
+box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+text-align: center;
+color: white;
 }
 
+.auth-container h2 {
+    margin-bottom: 20px;
+    font-size: 28px;
+    font-weight: 700;
+    color: #1f1f1f;
+}
 input {
   width: 90%;
-  padding: 10px;
+  padding: 12px 15px;
   margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 15px;
 }
-
-button {
+input:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+/* button {
   width: 100%;
-  padding: 10px;
-  background-color: #0077ff;
+  padding: 12px;
+  background-color: #2563eb;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
+  font-weight: 600;
+  font-size: 15px;
+  transition: background-color 0.3s ease;
+}
+button:hover {
+  background-color: #1d4ed8;
+} */
+
+
+.auth-container p{
+      font-size: 0.95em;
+      margin-top: 20px;
+      color: #6b21a8;
+    }
+
+
+.auth-container a{
+  color: #6b21a8;
+  text-decoration: none;
+  font-weight: 500;
+}
+ .auth-container a:hover {
+  text-decoration: underline;
+}
+.strength-meter {
+      height: 6px;
+      border-radius: 5px;
+      background-color: #ddd;
+      margin-top: -5px;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+.strength-meter div {
+      height: 100%;
+    }
+.strength-weak {
+      width: 33%;
+      background-color: red;
+    }
+.strength-medium {
+      width: 66%;
+      background-color: orange;
+    }
+.strength-strong {
+      width: 100%;
+      background-color: green;
+    }
+.error {
+      color: red;
+      font-size: 0.85em;
+      margin-top: -8px;
+      margin-bottom: 5px;
+      text-align: left;
+    }
+.toggle-password {
+      cursor: pointer;
+      position: absolute;
+      right: 20px;
+      margin-top: -35px;
+      transform: translateY(-50%);
+      color: #6b7280;
+    }
+.relative {
+      position: relative;
+    }
+.forgot-link {
+      text-align: right;
+      margin-top: -8px;
+      margin-bottom: 14px;
+      font-size: 0.9em;
+    }
+.forgot-link a {
+      color: #6366f1;
+      text-decoration: none;
 }
 
-a {
-  color: #0077ff;
-  text-decoration: none;
+.signup-button {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 1rem;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 0.5rem;
+  background: linear-gradient(to right, #6366f1, #a855f7); /* indigo to purple */
+  box-shadow: 0 4px 10px rgba(99, 102, 241, 0.2); /* soft shadow */
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.signup-button:hover {
+  background: linear-gradient(to right, #a855f7, #6366f1); /* reverse gradient on hover */
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.3);
+}
+
+.signup-button:disabled {
+  background: #e5e7eb; /* subtle gray */
+  color: #9ca3af;
+  cursor: not-allowed;
+  box-shadow: none;
+  opacity: 0.6;
+}
+.login-button {
+  padding: 0.6rem 2rem;
+  margin-top: 1rem;
+  background: linear-gradient(to right, #6366f1, #a855f7); /* Soft Indigo to Purple */
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+  transition: all 0.3s ease-in-out;
+}
+
+.login-button:hover {
+  background: linear-gradient(to right, #a855f7, #6366f1); /* reverse gradient */
+  box-shadow: 0 6px 18px rgba(99, 102, 241, 0.35);
+}
+
+.login-button:disabled {
+  background: #e5e7eb;
+  color: #9ca3af;
+  cursor: not-allowed;
+  box-shadow: none;
+  opacity: 0.6;
 }

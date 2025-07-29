@@ -41,6 +41,7 @@ body {
     padding: 1rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
+    gap: 30px; /* spacing between logo and nav */
 }
 
 .nav-brand {
@@ -59,7 +60,8 @@ body {
 .nav-menu {
     display: flex;
     list-style: none;
-    gap: 2rem;
+    gap: 32px;
+    align-items: center;
 }
 
 .nav-link {
@@ -79,6 +81,31 @@ body {
     cursor: pointer;
     gap: 4px;
 }
+
+.nav-menu .btn {
+ padding: 10px 20px;
+  border-radius: 12px;
+  border: 2px solid #7e22ce; /* Tailwind's purple-700 */
+  color: #7e22ce;
+  font-weight: 600;
+  background-color: transparent;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(126, 34, 206, 0.1);
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+}
+.nav-menu .btn:hover {
+  background-color: #7e22ce;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(126, 34, 206, 0.25);
+}
+@media (max-width: 480px) {
+  .stylish-button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}
+
 
 .nav-toggle span {
     width: 25px;
