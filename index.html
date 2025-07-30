@@ -7,31 +7,37 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
 </head>
 <body>
     <!-- Header -->
     <header class="header">
-        <nav class="nav">
-            <div class="nav-brand">
-                <i class="fas fa-robot"></i>
-                <span>ClubMate</span>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#features" class="nav-link">Features</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-            <div class="nav-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+    <div class="nav container">
+        <a href="#" class="nav-brand">
+            <i class="fas fa-robot"></i> ClubMate
+        </a>
+        <nav class="nav-menu">
+            <a href="#features" class="nav-link">Features</a>
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#team" class="nav-link">Team</a>
+            <a href="#contact" class="nav-link">Contact</a>
         </nav>
-    </header>
+        <div class="nav-actions">
+            <a href="/login" class="btn btn-outline">Login</a>
+            <a href="/signup" class="btn btn-primary">Sign Up</a>
+            <div class="profile-icon">
+                <i class="fas fa-user-circle"></i>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </div>
+</header>
+
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
+    <section id="home" class="hero" data-aos="fade-up">
         <div class="container">
             <div class="hero-content">
                 <h1 class="hero-title">
@@ -55,17 +61,17 @@
                 </div>
             </div>
             <div class="hero-image">
-                <div class="hero-card">
+                <div class="hero-card" data-aos="zoom-in" data-aos-delay="100">
                     <i class="fas fa-calendar-alt"></i>
                     <h3>Event Management</h3>
                     <p>Schedule and organize club events seamlessly</p>
                 </div>
-                <div class="hero-card">
+                <div class="hero-card" data-aos="zoom-in" data-aos-delay="200">
                     <i class="fas fa-users"></i>
                     <h3>Team Coordination</h3>
                     <p>Manage members and track participation</p>
                 </div>
-                <div class="hero-card">
+                <div class="hero-card" data-aos="zoom-in" data-aos-delay="300">
                     <i class="fas fa-project-diagram"></i>
                     <h3>Project Tracking</h3>
                     <p>Monitor project progress and showcase work</p>
@@ -75,49 +81,49 @@
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="features">
+    <section id="features" class="features" data-aos="fade-up">
         <div class="container">
             <div class="section-header">
                 <h2>Powerful Features for Modern Clubs</h2>
                 <p>Everything you need to run a successful technical club</p>
             </div>
             <div class="features-grid">
-                <div class="feature-card">
+                <div class="feature-card" data-aos="zoom-in" data-aos-delay="100">
                     <div class="feature-icon">
                         <i class="fas fa-calendar-check"></i>
                     </div>
                     <h3>Event Calendar</h3>
                     <p>Schedule workshops, competitions, and meetings with integrated registration system</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card" data-aos="zoom-in" data-aos-delay="200">
                     <div class="feature-icon">
                         <i class="fas fa-user-friends"></i>
                     </div>
                     <h3>Member Management</h3>
                     <p>Track member profiles, skills, and participation across all club activities</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card" data-aos="zoom-in" data-aos-delay="300">
                     <div class="feature-icon">
                         <i class="fas fa-tasks"></i>
                     </div>
                     <h3>Project Showcase</h3>
                     <p>Display ongoing and completed projects with status tracking and documentation</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card" data-aos="zoom-in" data-aos-delay="400">
                     <div class="feature-icon">
                         <i class="fas fa-bullhorn"></i>
                     </div>
                     <h3>Notice Board</h3>
                     <p>Share announcements, updates, and important information with all members</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card" data-aos="zoom-in" data-aos-delay="500">
                     <div class="feature-icon">
                         <i class="fas fa-cloud-upload-alt"></i>
                     </div>
                     <h3>Resource Sharing</h3>
                     <p>Upload and share documents, tutorials, and learning materials easily</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card" data-aos="zoom-in" data-aos-delay="600">
                     <div class="feature-icon">
                         <i class="fas fa-chart-line"></i>
                     </div>
@@ -128,15 +134,22 @@
         </div>
     </section>
 
+    <!-- Wave Divider -->
+    <div class="wave-divider">
+        <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#f8f9fa" fill-opacity="1" d="M0,64L48,85.3C96,107,192,149,288,160C384,171,480,149,576,128C672,107,768,85,864,90.7C960,96,1056,128,1152,160C1248,192,1344,224,1392,240L1440,256L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+        </svg>
+    </div>
+
     <!-- Tech Stack Section -->
-    <section class="tech-stack">
+    <section class="tech-stack" data-aos="fade-up">
         <div class="container">
             <div class="section-header">
                 <h2>Built with Modern Technologies</h2>
                 <p>Reliable, scalable, and developer-friendly stack</p>
             </div>
             <div class="tech-grid">
-                <div class="tech-category">
+                <div class="tech-category" data-aos="fade-up" data-aos-delay="100">
                     <h3>Frontend</h3>
                     <div class="tech-items">
                         <span class="tech-item">HTML/CSS</span>
@@ -144,7 +157,7 @@
                         <span class="tech-item">React</span>
                     </div>
                 </div>
-                <div class="tech-category">
+                <div class="tech-category" data-aos="fade-up" data-aos-delay="200">
                     <h3>Backend</h3>
                     <div class="tech-items">
                         <span class="tech-item">Node.js</span>
@@ -152,14 +165,14 @@
                         <span class="tech-item">REST API</span>
                     </div>
                 </div>
-                <div class="tech-category">
+                <div class="tech-category" data-aos="fade-up" data-aos-delay="300">
                     <h3>Database</h3>
                     <div class="tech-items">
                         <span class="tech-item">MongoDB</span>
                         <span class="tech-item">Firebase</span>
                     </div>
                 </div>
-                <div class="tech-category">
+                <div class="tech-category" data-aos="fade-up" data-aos-delay="400">
                     <h3>Tools</h3>
                     <div class="tech-items">
                         <span class="tech-item">Git</span>
@@ -172,7 +185,7 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="cta">
+    <section class="cta" data-aos="fade-up">
         <div class="container">
             <div class="cta-content">
                 <h2>Ready to Transform Your Club?</h2>
@@ -192,7 +205,7 @@
     </section>
 
     <!-- Footer -->
-    <footer id="contact" class="footer">
+    <footer id="contact" class="footer" data-aos="fade-up">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
@@ -244,6 +257,14 @@
         </div>
     </footer>
 
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 900,
+        once: true,
+      });
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
