@@ -37,14 +37,13 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Header background on scroll
 window.addEventListener('scroll', function() {
     const header = document.querySelector('.header');
-    if (window.scrollY > 100) {
-        header.style.background = 'rgba(255, 255, 255, 0.98)';
-        header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+    if (window.scrollY > 50) {
+        header.classList.add('scrolled');
     } else {
-        header.style.background = 'rgba(255, 255, 255, 0.95)';
-        header.style.boxShadow = 'none';
+        header.classList.remove('scrolled');
     }
 });
+
 
 // Animate elements on scroll
 const observerOptions = {
@@ -63,14 +62,17 @@ const observer = new IntersectionObserver(function(entries) {
 
 // Observe all cards and sections for animation
 document.addEventListener('DOMContentLoaded', function() {
-    const animatedElements = document.querySelectorAll('.feature-card, .hero-card, .tech-category');
+    const animatedElements = document.querySelectorAll('.feature-card, .hero-card, .tech-category, .tech-item');
+
     
-    animatedElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
-    });
+    animatedElements.forEach((el, index) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    el.style.transitionDelay = `${index * 0.1}s`;  // Staggered delay
+    observer.observe(el);
+});
+
 });
 
 // Add loading animation
@@ -127,6 +129,49 @@ document.querySelectorAll('.btn').forEach(button => {
         }, 600);
     });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+  const toggle = document.getElementById('nav-toggle');
+  const menu = document.querySelector('.nav-menu');
+  const darkModeToggle = document.getElementById('dark-mode-toggle');
+  const darkIcon = darkModeToggle.querySelector('i');
+
+  // Navbar toggle
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('active');
+    menu.classList.toggle('active');
+  });
+
+  // Dark Mode Toggle
+  darkModeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    // Icon Switch
+    if(document.body.classList.contains('dark-mode')) {
+      darkIcon.classList.remove('fa-moon');
+      darkIcon.classList.add('fa-sun');
+    } else {
+      darkIcon.classList.remove('fa-sun');
+      darkIcon.classList.add('fa-moon');
+    }
+  });
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+ document.body.classList.add('loaded');
+});
+
+
+const navToggle = document.getElementById('nav-toggle');
+const navMenu = document.querySelector('.nav-menu');
+
+navToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('nav-menu-active');
+});
+
+
+
+
+
 
 // Add CSS for ripple effect
 const style = document.createElement('style');
