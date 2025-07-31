@@ -2,21 +2,34 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sign Up - ClubMate</title>
   <link rel="stylesheet" href="auth.css" />
 </head>
 <body>
-  <div class="auth-container">
-    <h2>Sign Up</h2>
-    <form id="signupForm">
-      <input type="text" id="name" placeholder="Full Name" required />
-      <input type="email" id="signupEmail" placeholder="Email" required />
-      <input type="password" id="signupPassword" placeholder="Password" required />
-      <button type="submit">Sign Up</button>
-    </form>
-    <p>Already have an account? <a href="login.html">Login</a></p>
+  <div class="auth-wrapper">
+    <div class="auth-image">
+      <img src="sign-up.png" alt="Sign Up Illustration" />
+    </div>
+    <div class="auth-card">
+      <h2>Sign Up</h2>
+      <form id="signupForm">
+        <input type="text" id="name" placeholder="Full Name" required />
+        <input type="email" id="signupEmail" placeholder="Email" required />
+        <input type="password" id="signupPassword" placeholder="Password" required />
+        <input type="password" id="confirmPassword" placeholder="Confirm Password" required />
+        
+        <label class="checkbox-container">
+          <input type="checkbox" id="terms" required />
+          I accept the terms & conditions
+        </label>
+
+        <button type="submit">Sign Up</button>
+      </form>
+      <p class="redirect">Already have an account? <a href="login.html">Sign In</a></p>
+    </div>
   </div>
+
   <script src="auth.js"></script>
 </body>
 </html>
