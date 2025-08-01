@@ -206,3 +206,25 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        });
+    }
+
+    // You can add logic here for active dashboard links if needed
+    // const dashboardLinks = document.querySelectorAll('.sidebar-link');
+    // dashboardLinks.forEach(link => {
+    //     link.addEventListener('click', function(e) {
+    //         dashboardLinks.forEach(l => l.classList.remove('active'));
+    //         this.classList.add('active');
+    //     });
+    // });
+});
