@@ -7,12 +7,13 @@ const { handleGenerateToken } = require("../service/jwtTokenGenerate");
 
 async function handleSignup(req, res) {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password,role } = req.body;
     const hashPassword = await handleHashPassword(password);
     const userinfo = await user.insertOne({
       name,
       email,
       password: hashPassword,
+      role
     });
     userinfo.password = " ";
     return res.status(201).json(userinfo);
@@ -25,13 +26,13 @@ async function handleLogin(req, res) {
   try {
     const { password } = req.body;
     const Userinfo = req.user;
-    const { name, email } = Userinfo;
+    const { name, email,role } = Userinfo;
     const hashpassword = Userinfo.password;
     const isPasswordValid = await handleDecordPassword(hashpassword, password);
     if (isPasswordValid == false) {
       return res.status(404).json({ msg: "Invalid Password" });
     }
-    const token = await handleGenerateToken(name, email);
+    const token = await handleGenerateToken(name, email,role);
     res.cookie("token", token, { maxAge: 24 * 60 * 60 * 1000 });//max 1 day
     return res.status(201).json({ msg: "Login is Sucessfull" });
   } catch (error) {
