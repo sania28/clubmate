@@ -1,7 +1,7 @@
 const user = require("../modals/user.modal");
 async function RegisterValidation(req, res, next) {
-  const { name, email, password } = req.body;
-  if (!name || !email || !password) {
+  const { name, email, password,role } = req.body;
+  if (!name || !email || !password ||!role) {
     return res.status(404).json({ msg: "All Fields are required" });
   }
   const isUserPresentAlready = await user.findOne({ email });

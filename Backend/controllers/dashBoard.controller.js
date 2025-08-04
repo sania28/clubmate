@@ -1,10 +1,29 @@
 const user = require("../modals/user.modal");
 
-async function handleMyPost(req, res) {
-  const Id = req.params.id; //objectId created in mongodb
-  const mypost = await user.findOne({ Id });
-  return res.status(201).json({ msg: "All post" });
+async function handleDashboardinfo(req, res) {
+  
+  return res.status(201).json({ msg: "All Info" });
+}
+async function handleProjectCreate(req, res) {
+  
+  return res.status(201).json({ msg: "create" });
+}
+async function handleProjectUpdate(req, res) {
+  
+  return res.status(201).json({ msg: "Update" });
+}
+async function handleProjectdelete(req, res) {
+  
+  return res.status(201).json({ msg: "delete" });
+}
+async function handleProjectRead(req, res) {
+  
+  return res.status(201).json({ msg: "Read" });
 }
 module.exports = {
-  handleMyPost,
+  handleDashboardinfo,
+  handleProjectCreate,
+  handleProjectRead,
+  handleProjectUpdate,
+  handleProjectdelete
 };
