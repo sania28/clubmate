@@ -2,7 +2,7 @@
 
 ## Overview
 
-ClubMate Backend is a RESTful API service built for blogging platform management with secure user authentication and dashboard functionality. The backend provides JWT-based authentication using HTTP-only cookies and user management capabilities.
+ClubMate Backend is a RESTful API service built for club and project management with secure user authentication, role-based access control (RBAC), and dashboard functionality. The backend provides JWT-based authentication using HTTP-only cookies, hierarchical user roles, and granular permission management for multi-user club environments.
 
 ## Technology Stack
 
@@ -30,7 +30,8 @@ Backend/
 │   └── dashboard.route.js     # Dashboard routes
 ├── middleware/                 # Middleware functions
 │   ├── auth.middleware.js     # Input validation
-│   └── jwtverification.middleware.js # JWT verification
+│   ├── jwtverification.middleware.js # JWT verification
+│   └── roleVerification.js    # Role-based access control
 ├── modals/                     # Database schemas
 │   └── user.modal.js          # User model
 ├── service/                    # Utility services
@@ -48,6 +49,46 @@ Backend/
 - **Password encryption** using bcrypt with salt rounds (10)
 - **Token expiration** (1 hour)
 - **Secure cookie storage** (24 hours max age)
+- **Role-based access control (RBAC)** with hierarchical permissions
+
+### Role-Based Access Control (RBAC)
+
+The system implements a four-tier role hierarchy with specific permissions:
+
+#### Role Hierarchy:
+
+1. **Admin** - Full system access
+
+   - Manage all users and projects
+   - Access to all dashboard endpoints
+   - User role assignment capabilities
+
+2. **ClubLead** - Club management access
+
+   - Create, edit, and delete projects within their club
+   - Manage club members
+   - Access to club-specific dashboard features
+
+3. **Member** - Standard user access
+
+   - View and participate in club projects
+   - Limited dashboard functionality
+   - Read and contribute permissions
+
+4. **Guest** - Read-only access
+   - View public club content
+   - No modification permissions
+   - Restricted dashboard access
+
+#### Permission Matrix:
+
+| Action         | Admin | ClubLead | Member | Guest |
+| -------------- | ----- | -------- | ------ | ----- |
+| Create Project | ✅    | ✅       | ❌     | ❌    |
+| Edit Project   | ✅    | ✅       | ❌     | ❌    |
+| Delete Project | ✅    | ✅       | ❌     | ❌    |
+| View Projects  | ✅    | ✅       | ✅     | ✅    |
+| Dashboard Info | ✅    | ✅       | ✅     | ❌    |
 
 ### Password Security
 
@@ -61,6 +102,8 @@ Backend/
 - **User existence verification** before operations
 - **Duplicate email prevention** during registration
 - **Cookie-based token storage** for security
+- **Role-based authorization** on protected routes
+- **Permission validation** before resource access
 
 ## Database Schema
 
@@ -81,6 +124,12 @@ Backend/
     type: String,
     required: true
   },
+  role: {
+    type: String,
+    required: true,
+    enum: ["Admin", "ClubLead", "Member", "Guest"],
+    default: "Guest"
+  },
   timestamps: true // createdAt, updatedAt
 }
 ```
@@ -91,14 +140,15 @@ Backend/
 
 #### POST /api/auth/signup
 
-**Purpose**: User registration with password hashing
+**Purpose**: User registration with password hashing and role assignment
 **Input**:
 
 ```json
 {
   "name": "string (required)",
   "email": "string (required, unique)",
-  "password": "string (required)"
+  "password": "string (required)",
+  "role": "string (required, enum: ['Admin', 'ClubLead', 'Member', 'Guest'], default: 'Guest')"
 }
 ```
 
@@ -110,6 +160,7 @@ Backend/
   "name": "John Doe",
   "email": "john@example.com",
   "password": " ", // Hidden for security
+  "role": "Member",
   "createdAt": "2023-09-05T10:30:00Z",
   "updatedAt": "2023-09-05T10:30:00Z"
 }
@@ -225,7 +276,129 @@ Backend/
 
 ### Dashboard Endpoints
 
-#### GET /api/dashboard/mypost/:id
+#### GET /api/dashboard/info
+
+**Purpose**: Retrieve dashboard information
+**Authentication**: Required (JWT token in cookies)
+**Authorization**: All authenticated users (Admin, ClubLead, Member)
+
+**Success Response** (201):
+
+```json
+{
+  "msg": "All Info"
+}
+```
+
+**Error Responses**:
+
+- **404**: Authentication required
+
+```json
+{
+  "msg": "User must be login"
+}
+```
+
+- **401**: Invalid token
+
+```json
+{
+  "msg": "Invalid User"
+}
+```
+
+- **403**: Insufficient permissions (Guest users)
+
+```json
+{
+  "msg": "Unauthorized"
+}
+```
+
+#### POST /api/dashboard/project/create
+
+**Purpose**: Create a new project
+**Authentication**: Required (JWT token in cookies)
+**Authorization**: Admin and ClubLead only
+
+**Success Response** (201):
+
+```json
+{
+  "msg": "create"
+}
+```
+
+**Error Responses**:
+
+- **404**: Authentication required
+
+```json
+{
+  "msg": "User must be login"
+}
+```
+
+- **401**: Invalid token
+
+```json
+{
+  "msg": "Invalid User"
+}
+```
+
+- **403**: Insufficient permissions (Member/Guest users)
+
+```json
+{
+  "msg": "Unauthorized"
+}
+```
+
+#### PUT /api/dashboard/project/update
+
+**Purpose**: Update an existing project
+**Authentication**: Required (JWT token in cookies)
+**Authorization**: Admin and ClubLead only
+
+**Success Response** (201):
+
+```json
+{
+  "msg": "Update"
+}
+```
+
+#### DELETE /api/dashboard/project/delete
+
+**Purpose**: Delete a project
+**Authentication**: Required (JWT token in cookies)
+**Authorization**: Admin and ClubLead only
+
+**Success Response** (201):
+
+```json
+{
+  "msg": "delete"
+}
+```
+
+#### GET /api/dashboard/project/read
+
+**Purpose**: Read project information
+**Authentication**: Required (JWT token in cookies)
+**Authorization**: All authenticated users (Admin, ClubLead, Member)
+
+**Success Response** (201):
+
+```json
+{
+  "msg": "Read"
+}
+```
+
+#### GET /api/dashboard/mypost/:id (Legacy)
 
 **Purpose**: Retrieve user's posts by ID
 **Authentication**: Required (JWT token in cookies)
@@ -259,6 +432,14 @@ Backend/
 }
 ```
 
+- **403**: Insufficient permissions
+
+```json
+{
+  "msg": "Unauthorized"
+}
+```
+
 ## Middleware Functions
 
 ### Authentication Middleware
@@ -268,9 +449,10 @@ Backend/
 **Purpose**: Validates registration input and checks for existing users
 **Validations**:
 
-- Required fields: name, email, password
+- Required fields: name, email, password, role
 - Email uniqueness check
 - Database query for existing user
+- Role validation against enum values
 
 #### LoginValidation
 
@@ -290,14 +472,47 @@ Backend/
 2. Verifies token with secret key
 3. Allows access if valid
 
+### Role-Based Access Control Middleware
+
+#### GuestVerification
+
+**Purpose**: Blocks access for Guest users
+**Usage**: Applied to routes requiring Member level or higher
+**Logic**: Denies access if user role is "Guest"
+
+**Error Response** (403):
+
+```json
+{
+  "msg": "Unauthorized"
+}
+```
+
+#### MemberVerification
+
+**Purpose**: Blocks access for Member and Guest users
+**Usage**: Applied to routes requiring ClubLead level or higher
+**Logic**: Denies access if user role is "Member" or "Guest"
+
+#### ClubleadVerification
+
+**Purpose**: Blocks access for ClubLead, Member, and Guest users
+**Usage**: Applied to routes requiring Admin level access
+**Logic**: Denies access if user role is not "Admin"
+
+**Note**: There appears to be an inverse logic implementation in the current code that may need review.
+
 ## Service Functions
 
 ### JWT Token Generation
 
-**File**: `service/jwtTokenGenerate.js`
-**Function**: `handleGenerateToken(name, email)`
-**Returns**: JWT token with 1-hour expiration
-**Payload**: User name and email
+**File**: `service/jwtTokenGenerateAndDecode.js`
+**Functions**:
+
+- `handleGenerateToken(name, email, role)`: Generates JWT token with user details and role
+- `handleDecodeToken(token)`: Decodes JWT token to extract user information
+  **Returns**: JWT token with 1-hour expiration
+  **Payload**: User name, email, and role
 
 ### Password Hashing
 
@@ -370,7 +585,7 @@ npm start
 
 ## API Usage Examples
 
-### User Registration
+### User Registration with Role
 
 ```bash
 curl -X POST http://localhost:3000/api/auth/signup \
@@ -378,7 +593,21 @@ curl -X POST http://localhost:3000/api/auth/signup \
   -d '{
     "name": "John Doe",
     "email": "john@example.com",
-    "password": "securepassword123"
+    "password": "securepassword123",
+    "role": "Member"
+  }'
+```
+
+### Admin User Registration
+
+```bash
+curl -X POST http://localhost:3000/api/auth/signup \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Admin User",
+    "email": "admin@example.com",
+    "password": "adminpassword123",
+    "role": "Admin"
   }'
 ```
 
@@ -394,10 +623,28 @@ curl -X POST http://localhost:3000/api/auth/login \
   }'
 ```
 
-### Access Protected Route
+### Access Protected Route (Dashboard Info)
 
 ```bash
-curl -X GET http://localhost:3000/api/dashboard/mypost/64f7b1c2e8a9c12345678901 \
+curl -X GET http://localhost:3000/api/dashboard/info \
+  -b cookies.txt
+```
+
+### Create Project (Admin/ClubLead only)
+
+```bash
+curl -X POST http://localhost:3000/api/dashboard/project/create \
+  -H "Content-Type: application/json" \
+  -b cookies.txt \
+  -d '{
+    "projectData": "example"
+  }'
+```
+
+### Read Projects (All authenticated users)
+
+```bash
+curl -X GET http://localhost:3000/api/dashboard/project/read \
   -b cookies.txt
 ```
 
@@ -423,6 +670,8 @@ curl -X GET http://localhost:3000/api/auth/logout \
 - **Password hashing** with bcrypt salt rounds
 - **Token expiration** (1 hour for JWT, 24 hours for cookie)
 - **Secure cookie settings** with maxAge
+- **Role-based authorization** with hierarchical permissions
+- **Token payload includes user role** for authorization decisions
 
 ### Data Protection
 
@@ -430,12 +679,13 @@ curl -X GET http://localhost:3000/api/auth/logout \
 - **Database connection security** with environment variables
 - **Error handling** to prevent information leakage
 
-## Error Handling
+### Error Handling
 
 ### Common Error Patterns
 
 - **404**: Resource not found or missing data
 - **401**: Authentication failure
+- **403**: Authorization failure (insufficient role permissions)
 - **500**: Internal server errors with detailed logging
 
 ### Error Response Format
@@ -454,6 +704,22 @@ or
 }
 ```
 
+### Role-Based Error Responses
+
+**Unauthorized Access (403)**:
+
+```json
+{
+  "msg": "Unauthorized"
+}
+```
+
+This error is returned when:
+
+- Guest users try to access Member-level routes
+- Member users try to access ClubLead-level routes
+- ClubLead users try to access Admin-level routes
+
 ## Development Notes
 
 ### Known Issues
@@ -462,6 +728,8 @@ or
 2. Dashboard endpoint needs proper post model implementation
 3. JWT verification error handling could be improved
 4. Input validation could be more comprehensive
+5. **Role verification logic may need review** - current implementation appears to have inverse logic
+6. Role-based middleware could benefit from more granular permissions
 
 ### Recommended Improvements
 
@@ -472,6 +740,9 @@ or
 5. Implement proper error handling middleware
 6. Add API documentation with Swagger
 7. Add unit and integration tests
+8. **Fix role verification middleware logic**
+9. **Add role-based route protection documentation**
+10. **Implement role assignment by Admin users only**
 
 ## Testing
 
@@ -479,10 +750,39 @@ or
 
 Use tools like Postman or curl to test endpoints:
 
-1. Register a new user
-2. Login with credentials
-3. Access protected dashboard route
-4. Logout to clear session
+1. Register users with different roles (Admin, ClubLead, Member, Guest)
+2. Login with credentials to receive JWT token
+3. Test role-based access to dashboard routes:
+   - Admin: Should access all routes
+   - ClubLead: Should access project CRUD operations
+   - Member: Should access read-only dashboard info
+   - Guest: Should be denied dashboard access
+4. Verify authorization errors (403) for insufficient permissions
+5. Logout to clear session
+
+### Role-Based Testing Scenarios
+
+**Test Admin Access**:
+
+```bash
+# Register as Admin
+curl -X POST http://localhost:3000/api/auth/signup -H "Content-Type: application/json" -d '{"name":"Admin","email":"admin@test.com","password":"admin123","role":"Admin"}'
+
+# Login and test all routes
+curl -X POST http://localhost:3000/api/auth/login -c admin_cookies.txt -H "Content-Type: application/json" -d '{"email":"admin@test.com","password":"admin123"}'
+curl -X POST http://localhost:3000/api/dashboard/project/create -b admin_cookies.txt
+```
+
+**Test Member Restrictions**:
+
+```bash
+# Register as Member
+curl -X POST http://localhost:3000/api/auth/signup -H "Content-Type: application/json" -d '{"name":"Member","email":"member@test.com","password":"member123","role":"Member"}'
+
+# Login and test restricted access
+curl -X POST http://localhost:3000/api/auth/login -c member_cookies.txt -H "Content-Type: application/json" -d '{"email":"member@test.com","password":"member123"}'
+curl -X POST http://localhost:3000/api/dashboard/project/create -b member_cookies.txt # Should return 403
+```
 
 ### Health Check
 
@@ -517,6 +817,8 @@ Server was running at 3000
 - Input sanitization
 - SQL injection prevention
 - XSS protection headers
+- **Role assignment validation** (only Admins should assign sensitive roles)
+- **Granular permission system** for fine-tuned access control
 
 ### Performance Optimizations
 
@@ -528,6 +830,27 @@ Server was running at 3000
 ---
 
 **Current Version**: 1.0.0  
-**Last Updated**: September 2023  
+**Last Updated**: August 2025  
 **Database**: Blogging-platform  
-**Default Port**: 3000
+**Default Port**: 3000  
+**Features**: JWT Authentication, Role-Based Access Control (RBAC), Club Management
+
+## RBAC Implementation Summary
+
+### Roles and Capabilities:
+
+- **Admin**: Full system control, user management, all project operations
+- **ClubLead**: Club-specific project management, team leadership
+- **Member**: Project participation, limited dashboard access
+- **Guest**: Read-only access to public content
+
+### Security Benefits:
+
+- Prevents unauthorized access to sensitive operations
+- Hierarchical permission structure mimics real-world club organization
+- Granular control over feature access based on user responsibility
+- Enhanced security through role validation middleware
+
+### Route Protection:
+
+All dashboard routes are protected with appropriate role-based middleware to ensure users can only access features appropriate to their role level.

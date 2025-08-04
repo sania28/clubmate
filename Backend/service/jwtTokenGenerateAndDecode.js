@@ -8,6 +8,11 @@ async function handleGenerateToken(name,email,role) {
 
     return token
 }
+async function handleDecodeToken(token) {
+    const decodedata = await jwt.decode(token)
+    return decodedata;
+}
 module.exports ={
-    handleGenerateToken
+    handleGenerateToken,
+    handleDecodeToken
 }

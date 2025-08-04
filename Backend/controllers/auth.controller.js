@@ -3,7 +3,7 @@ const {
   handleHashPassword,
   handleDecordPassword,
 } = require("../service/hashPassword");
-const { handleGenerateToken } = require("../service/jwtTokenGenerate");
+const { handleGenerateToken } = require("../service/jwtTokenGenerateAndDecode");
 
 async function handleSignup(req, res) {
   try {
