@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClubMate - Member Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="dashboard-header">
+        <div class="nav-brand">
+            <i class="fas fa-robot"></i>
+            <span>ClubMate Member</span>
+        </div>
+        <nav class="dashboard-nav">
+            <ul class="dashboard-menu">
+                <li><a href="#" class="dashboard-link active">My Profile</a></li>
+                <li><a href="#" class="dashboard-link">My Events</a></li>
+                <li><a href="#" class="dashboard-link">My Projects</a></li>
+                <li><a href="#" class="dashboard-link">Announcements</a></li>
+            </ul>
+        </nav>
+        <div class="user-info">
+            <i class="fas fa-user-circle"></i>
+            <span>Member Name</span>
+            <button class="logout-btn">Logout</button>
+        </div>
+    </header>
+
+    <main class="dashboard-main">
+        <div class="sidebar">
+            <ul class="sidebar-menu">
+                <li><a href="#" class="sidebar-link active"><i class="fas fa-tachometer-alt"></i> My Overview</a></li>
+                <li><a href="#" class="sidebar-link"><i class="fas fa-user"></i> Profile</a></li>
+                <li><a href="#" class="sidebar-link"><i class="fas fa-calendar-alt"></i> Events Joined</a></li>
+                <li><a href="#" class="sidebar-link"><i class="fas fa-project-diagram"></i> My Projects</a></li>
+                <li><a href="#" class="sidebar-link"><i class="fas fa-bullhorn"></i> Notices</a></li>
+                <li><a href="#" class="sidebar-link"><i class="fas fa-cloud-download-alt"></i> Resources</a></li>
+            </ul>
+        </div>
+        <div class="content-area">
+            <h1 class="content-title">Welcome, Member!</h1>
+            <p class="content-description">Explore events, track your projects, and stay updated with Robonixx Club.</p>
+            <div class="dashboard-widgets">
+                <div class="widget-card">
+                    <h3>Events Attended</h3>
+                    <p>5</p>
+                </div>
+                <div class="widget-card">
+                    <h3>Projects I'm On</h3>
+                    <p>2</p>
+                </div>
+                <div class="widget-card">
+                    <h3>Latest Announcement</h3>
+                    <p>"Next meeting on Friday!"</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../others/script.js"></script>
+</body>
+</html>

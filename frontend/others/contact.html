@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - ClubMate</title>
+    <link rel="stylesheet" href="../dashBoard/styles.css"> <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Basic Contact Form Styles (can be moved to styles.css or a new contact.css) */
+        .contact-section {
+            padding: 80px 0;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .contact-section .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .contact-section h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .contact-section p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .contact-form {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            color: #333;
+            box-sizing: border-box; /* Ensures padding doesn't increase total width */
+        }
+
+        .form-group textarea {
+            resize: vertical; /* Allow vertical resizing */
+            min-height: 120px;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+        .form-message {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: 500;
+            display: none; /* Hidden by default */
+        }
+
+        .form-message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border-color: #c3e6cb;
+        }
+
+        .form-message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border-color: #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <i class="fas fa-robot"></i>
+                <span>ClubMate</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="../index.html#features" class="nav-link">Features</a></li>
+                <li><a href="../index.html#about" class="nav-link">About</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li> <li><a href="login.html" class="nav-link">Sign In</a></li>
+                <li><a href="signup.html" class="nav-link">Sign Up</a></li>
+            </ul>
+            <div class="auth-links">
+                <a href="login.html" class="btn btn-sm">Login</a>
+                <a href="../admin-dashboard.html" class="btn btn-sm btn-primary">Admin Dashboard</a>
+                <a href="../member-dashboard.html" class="btn btn-sm btn-secondary">Member Dashboard</a>
+            </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section class="contact-section">
+        <div class="container">
+            <h2>Get In Touch With Us</h2>
+            <p>We'd love to hear from you! Please fill out the form below to send us a message.</p>
+
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                    <div id="formMessage" class="form-message"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <i class="fas fa-robot"></i>
+                        <span>ClubMate</span>
+                    </div>
+                    <p>Open-source club management system for technical communities</p>
+                    <div class="social-links">
+                        <a href="https://github.com/yadavaman13/clubmate" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" target="_blank">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" target="_blank">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../index.html#features">Features</a></li>
+                        <li><a href="../index.html#about">About</a></li>
+                        <li><a href="https://github.com/yadavaman13/clubmate/issues">Report Issues</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Community</h3>
+                    <ul>
+                        <li><a href="https://github.com/yadavaman13/clubmate/blob/main/CONTRIBUTING.md">Contributing</a></li>
+                        <li><a href="https://github.com/yadavaman13/clubmate/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+                        <li><a href="https://github.com/yadavaman13/clubmate/discussions">Discussions</a></li>
+                        <li><a href="https://github.com/yadavaman13/clubmate/wiki">Documentation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-envelope"></i> clubmate@robonixx.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Open Source Community</p>
+                    <p><i class="fas fa-globe"></i> Available Worldwide</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ClubMate. Open source under MIT License.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script> <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const formMessage = document.getElementById('formMessage');
+            formMessage.style.display = 'none'; // Hide previous messages
+
+            // Simple client-side validation
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const subject = document.getElementById('subject').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            if (!name || !email || !subject || !message) {
+                formMessage.textContent = 'Please fill in all fields.';
+                formMessage.className = 'form-message error';
+                formMessage.style.display = 'block';
+                return;
+            }
+
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                formMessage.textContent = 'Please enter a valid email address.';
+                formMessage.className = 'form-message error';
+                formMessage.style.display = 'block';
+                return;
+            }
+
+            // In a real application, you would send this data to a backend server.
+            // For now, we'll simulate a successful submission.
+            console.log('Form Submitted:', { name, email, subject, message });
+
+            // Simulate API call success
+            setTimeout(() => {
+                formMessage.textContent = 'Thank you for your message! We will get back to you soon.';
+                formMessage.className = 'form-message success';
+                formMessage.style.display = 'block';
+                document.getElementById('contactForm').reset(); // Clear form fields
+            }, 1000);
+
+            // If you had a backend (e.g., Node.js/Express):
+            /*
+            fetch('/api/contact', { // Your backend API endpoint
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name, email, subject, message }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    formMessage.textContent = 'Thank you for your message! We will get back to you soon.';
+                    formMessage.className = 'form-message success';
+                    formMessage.style.display = 'block';
+                    document.getElementById('contactForm').reset();
+                } else {
+                    formMessage.textContent = data.message || 'There was an error sending your message. Please try again.';
+                    formMessage.className = 'form-message error';
+                    formMessage.style.display = 'block';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                formMessage.textContent = 'Network error. Please try again later.';
+                formMessage.className = 'form-message error';
+                formMessage.style.display = 'block';
+            });
+            */
+        });
+    </script>
+</body>
+</html>
