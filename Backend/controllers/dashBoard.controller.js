@@ -1,12 +1,19 @@
-const user = require("../modals/user.modal");
+const project = require("../modals/project.modal")
 
 async function handleDashboardinfo(req, res) {
   
   return res.status(201).json({ msg: "All Info" });
 }
 async function handleProjectCreate(req, res) {
-  
-  return res.status(201).json({ msg: "create" });
+  const { title, shortinfo, description, techstack } = req.body;
+  const newProject = await project.insertOne({
+    title,shortinfo,description,techstack
+  })
+  const data ={
+    title:newProject.title,
+    shortinfo:newProject.shortinfo
+  }
+  return res.status(201).json(data)
 }
 async function handleProjectUpdate(req, res) {
   
