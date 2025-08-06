@@ -11,8 +11,10 @@ async function handleProjectCreate(req, res) {
   })
   const data ={
     title:newProject.title,
-    shortinfo:newProject.shortinfo
+    shortinfo:newProject.shortinfo,
+    createdBy:newProject.createdBy
   }
+  console.log(data)
   return res.status(201).json(data)
 }
 async function handleProjectUpdate(req, res) {

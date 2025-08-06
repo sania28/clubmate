@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+const { Schema } = require("mongoose");
 const ProjectSchema = mongoose.Schema(
   {
     title: {
@@ -24,6 +24,10 @@ const ProjectSchema = mongoose.Schema(
     member: {
       type: Number,
       default: 0,
+    },
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref:"user"
     },
   },
   { timestamps: true }
