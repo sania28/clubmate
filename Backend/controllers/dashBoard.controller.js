@@ -1,8 +1,17 @@
 const project = require("../modals/project.modal")
 
 async function handleDashboardinfo(req, res) {
-  
-  return res.status(201).json({ msg: "All Info" });
+  const result = await project.find({});
+  //data limiting part more than 10 project data cannot send to frontend
+  const size = result.length
+  const data =[10]
+  for(let i=0;i<10;i++){
+    data[i] = result[i]
+    if(i>size){
+      break
+    }
+  }
+  return res.status(201).json(data)
 }
 async function handleProjectCreate(req, res) {
   const { title, shortinfo, description, techstack } = req.body;

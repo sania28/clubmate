@@ -8,8 +8,7 @@ async function ClubleadVerification(token) {
   }
   return true;
 }
-async function MemberVerification(req, res, next) {
-  const token = req.cookies.token;
+async function MemberVerification(token) {
   const decodeToken = await handleDecodeToken(token);
   const Role = decodeToken.role;
   if (Role == "Member" || Role == "Guest") {
@@ -17,8 +16,7 @@ async function MemberVerification(req, res, next) {
   }
   next();
 }
-async function GuestVerification(req, res, next) {
-  const token = req.cookies.token;
+async function GuestVerification(token) {
   const decodeToken = await handleDecodeToken(token);
   const Role = decodeToken.role;
   if (Role == "Guest") {

@@ -10,7 +10,8 @@ async function ProjectcreateChecker(req, res, next) {
   }
   next();
 }
-async function name(params) {
+async function ProjectUpdateChecker(req,res,next) {
+    const token = req.cookies.token;
     
 }
 module.exports = {
