@@ -12,17 +12,18 @@ async function MemberVerification(token) {
   const decodeToken = await handleDecodeToken(token);
   const Role = decodeToken.role;
   if (Role == "Member" || Role == "Guest") {
-    return res.status(404).json({ msg: "Unauthorized" });
+    return false
   }
-  next();
+  return true
 }
+  
 async function GuestVerification(token) {
   const decodeToken = await handleDecodeToken(token);
   const Role = decodeToken.role;
   if (Role == "Guest") {
-    return res.status(404).json({ msg: "Unauthorized" });
+    return false
   }
-  next();
+  return true
 }
 module.exports = {
   ClubleadVerification,

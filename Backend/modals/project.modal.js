@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { Schema } = require("mongoose");
 const ProjectSchema = mongoose.Schema(
   {
     title: {
@@ -21,13 +20,22 @@ const ProjectSchema = mongoose.Schema(
     projectimg: {
       type: String,
     },
-    member: {
-      type: Number,
-      default: 0,
-    },
+    member: [
+      {
+        name: {
+          type: String,
+        },
+        stream: {
+          type: String,
+        },
+        year: {
+          type: String,
+        },
+      },
+    ],
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
-      ref:"user"
+      ref: "user",
     },
   },
   { timestamps: true }
