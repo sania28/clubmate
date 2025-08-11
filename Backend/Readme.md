@@ -316,17 +316,119 @@ The system implements a four-tier role hierarchy with specific permissions:
 }
 ```
 
+### Project Management Endpoints
+
 #### POST /api/dashboard/project/create
 
 **Purpose**: Create a new project
 **Authentication**: Required (JWT token in cookies)
 **Authorization**: Admin and ClubLead only
+**Input**:
+
+```json
+{
+  "title": "string (required)",
+  "shortinfo": "string (required)",
+  "description": "string (required)",
+  "techstack": "string (required)"
+}
+```
 
 **Success Response** (201):
 
 ```json
 {
   "msg": "create"
+}
+```
+
+**Error Responses**:
+
+- **404**: Missing required fields
+
+```json
+{
+  "msg": "All fields are require"
+}
+```
+
+- **404**: Authentication required
+
+```json
+{
+  "msg": "User must be login"
+}
+```
+
+- **404**: Insufficient permissions (Member/Guest users)
+
+```json
+{
+  "msg": "Unauthorized"
+}
+```
+
+- **401**: Invalid token
+
+```json
+{
+  "msg": "Invalid User"
+}
+```
+
+#### PUT /api/dashboard/project/update
+
+**Purpose**: Update an existing project
+**Authentication**: Required (JWT token in cookies)
+**Authorization**: Admin, ClubLead, and Member (Member level access required)
+**Input**: Project data to be updated (format depends on implementation)
+
+**Success Response** (201):
+
+```json
+{
+  "msg": "Update"
+}
+```
+
+**Error Responses**:
+
+- **404**: Authentication required
+
+```json
+{
+  "msg": "User must be login"
+}
+```
+
+- **401**: Insufficient permissions (Guest users)
+
+```json
+{
+  "msg": "Unauthorized"
+}
+```
+
+- **401**: Invalid token
+
+```json
+{
+  "msg": "Invalid User"
+}
+```
+
+#### DELETE /api/dashboard/project/delete
+
+**Purpose**: Delete a project
+**Authentication**: Required (JWT token in cookies)
+**Authorization**: Admin and ClubLead only
+**URL Parameters**: May require project ID (implementation dependent)
+
+**Success Response** (201):
+
+```json
+{
+  "msg": "delete"
 }
 ```
 
@@ -356,34 +458,6 @@ The system implements a four-tier role hierarchy with specific permissions:
 }
 ```
 
-#### PUT /api/dashboard/project/update
-
-**Purpose**: Update an existing project
-**Authentication**: Required (JWT token in cookies)
-**Authorization**: Admin and ClubLead only
-
-**Success Response** (201):
-
-```json
-{
-  "msg": "Update"
-}
-```
-
-#### DELETE /api/dashboard/project/delete
-
-**Purpose**: Delete a project
-**Authentication**: Required (JWT token in cookies)
-**Authorization**: Admin and ClubLead only
-
-**Success Response** (201):
-
-```json
-{
-  "msg": "delete"
-}
-```
-
 #### GET /api/dashboard/project/read
 
 **Purpose**: Read project information
@@ -398,13 +472,97 @@ The system implements a four-tier role hierarchy with specific permissions:
 }
 ```
 
+**Error Responses**:
+
+- **404**: Authentication required
+
+```json
+{
+  "msg": "User must be login"
+}
+```
+
+- **401**: Invalid token
+
+```json
+{
+  "msg": "Invalid User"
+}
+```
+
+- **403**: Insufficient permissions (Guest users)
+
+```json
+{
+  "msg": "Unauthorized"
+}
+```
+
+#### POST /api/dashboard/project/members
+
+**Purpose**: Add members to a project
+**Authentication**: Required (JWT token in cookies)
+**Authorization**: Admin, ClubLead, and Member (All authenticated users except Guest)
+**Input**:
+
+```json
+{
+  "name": "string (required)",
+  "stream": "string (required)",
+  "year": "string (required)"
+}
+```
+
+**Success Response** (201):
+
+```json
+{
+  "msg": "Member added successfully"
+}
+```
+
+**Error Responses**:
+
+- **401**: Missing required fields
+
+```json
+{
+  "msg": "All fields are require"
+}
+```
+
+- **404**: Authentication required
+
+```json
+{
+  "msg": "User must be login"
+}
+```
+
+- **404**: Insufficient permissions (Guest users)
+
+```json
+{
+  "msg": "Unauthorized"
+}
+```
+
+- **401**: Invalid token
+
+```json
+{
+  "msg": "Invalid User"
+}
+```
+
 #### GET /api/dashboard/mypost/:id (Legacy)
 
 **Purpose**: Retrieve user's posts by ID
 **Authentication**: Required (JWT token in cookies)
+**Authorization**: All authenticated users (Admin, ClubLead, Member)
 **URL Parameters**:
 
-- `id`: MongoDB ObjectId of the user
+- `id`: MongoDB ObjectId of the user (required)
 
 **Success Response** (201):
 
@@ -432,7 +590,7 @@ The system implements a four-tier role hierarchy with specific permissions:
 }
 ```
 
-- **403**: Insufficient permissions
+- **403**: Insufficient permissions (Guest users)
 
 ```json
 {
@@ -440,148 +598,74 @@ The system implements a four-tier role hierarchy with specific permissions:
 }
 ```
 
-## Middleware Functions
+## Route Parameters and Requirements Summary
 
-### Authentication Middleware
+### Routes Requiring Project ID
 
-#### RegisterValidation
+The following routes may require project ID as URL parameter or in request body (implementation dependent):
 
-**Purpose**: Validates registration input and checks for existing users
-**Validations**:
+- `PUT /api/dashboard/project/update` - Project ID needed to identify which project to update
+- `DELETE /api/dashboard/project/delete` - Project ID needed to identify which project to delete
 
-- Required fields: name, email, password, role
-- Email uniqueness check
-- Database query for existing user
-- Role validation against enum values
+### Routes Requiring User ID
 
-#### LoginValidation
+- `GET /api/dashboard/mypost/:id` - User ID required as URL parameter
 
-**Purpose**: Validates login credentials and verifies user existence
-**Validations**:
+### Input Validation Requirements
 
-- Required fields: email, password
-- User existence verification
-- Attaches user object to request
+#### Project Creation (`POST /api/dashboard/project/create`)
 
-#### jwtValidation
+**Required Fields**:
 
-**Purpose**: Verifies JWT token from cookies
-**Process**:
+- `title`: Project title
+- `shortinfo`: Brief project description
+- `description`: Detailed project description
+- `techstack`: Technologies used in the project
 
-1. Extracts token from cookies
-2. Verifies token with secret key
-3. Allows access if valid
+#### Project Member Addition (`POST /api/dashboard/project/members`)
 
-### Role-Based Access Control Middleware
+**Required Fields**:
 
-#### GuestVerification
+- `name`: Member name
+- `stream`: Academic stream/department
+- `year`: Academic year
 
-**Purpose**: Blocks access for Guest users
-**Usage**: Applied to routes requiring Member level or higher
-**Logic**: Denies access if user role is "Guest"
+#### User Registration (`POST /api/auth/signup`)
 
-**Error Response** (403):
+**Required Fields**:
 
-```json
-{
-  "msg": "Unauthorized"
-}
-```
+- `name`: User's full name
+- `email`: Valid email address (unique)
+- `password`: Secure password
+- `role`: User role (Admin, ClubLead, Member, Guest)
 
-#### MemberVerification
+#### User Login (`POST /api/auth/login`)
 
-**Purpose**: Blocks access for Member and Guest users
-**Usage**: Applied to routes requiring ClubLead level or higher
-**Logic**: Denies access if user role is "Member" or "Guest"
+**Required Fields**:
 
-#### ClubleadVerification
+- `email`: Registered email address
+- `password`: User password
 
-**Purpose**: Blocks access for ClubLead, Member, and Guest users
-**Usage**: Applied to routes requiring Admin level access
-**Logic**: Denies access if user role is not "Admin"
+## Role-Based Access Control Summary
 
-**Note**: There appears to be an inverse logic implementation in the current code that may need review.
+### Project Management Permissions
 
-## Service Functions
+| Action              | Admin | ClubLead | Member | Guest |
+| ------------------- | ----- | -------- | ------ | ----- |
+| Create Project      | ✅    | ✅       | ❌     | ❌    |
+| Update Project      | ✅    | ✅       | ✅     | ❌    |
+| Delete Project      | ✅    | ✅       | ❌     | ❌    |
+| Read Projects       | ✅    | ✅       | ✅     | ❌    |
+| Add Project Members | ✅    | ✅       | ✅     | ❌    |
+| Dashboard Info      | ✅    | ✅       | ✅     | ❌    |
+| View User Posts     | ✅    | ✅       | ✅     | ❌    |
 
-### JWT Token Generation
+### Authorization Levels
 
-**File**: `service/jwtTokenGenerateAndDecode.js`
-**Functions**:
-
-- `handleGenerateToken(name, email, role)`: Generates JWT token with user details and role
-- `handleDecodeToken(token)`: Decodes JWT token to extract user information
-  **Returns**: JWT token with 1-hour expiration
-  **Payload**: User name, email, and role
-
-### Password Hashing
-
-**File**: `service/hashPassword.js`
-**Functions**:
-
-- `handleHashPassword(password)`: Hashes password with bcrypt
-- `handleDecordPassword(hashpassword, password)`: Compares passwords
-
-## Environment Configuration
-
-### Required Environment Variables
-
-```properties
-PORT=3000
-MONGODB_URL=mongodb://localhost:27017/Blogging-platform
-SECRET_KEY=clubmate@1234
-```
-
-### Environment Setup
-
-1. Create `.env` file in root directory
-2. Set appropriate values for your environment
-3. Ensure MongoDB is running on specified URL
-4. Use strong secret key for JWT signing
-
-## Installation and Setup
-
-### Prerequisites
-
-- Node.js (v14.0.0 or higher)
-- MongoDB (v4.0 or higher)
-- npm package manager
-
-### Installation Steps
-
-1. **Clone and Navigate**:
-
-```bash
-cd c:\Users\paula\OneDrive\Desktop\CLUEMATE\clubmate\Backend
-```
-
-2. **Install Dependencies**:
-
-```bash
-npm install
-```
-
-3. **Environment Setup**:
-
-```bash
-# Copy and configure .env file
-cp .env.example .env
-# Edit .env with your configuration
-```
-
-4. **Start MongoDB**:
-
-```bash
-# Ensure MongoDB is running
-mongod
-```
-
-5. **Start Server**:
-
-```bash
-npm start
-# Server runs on http://localhost:3000
-```
+1. **Admin Access**: Full CRUD operations on all projects
+2. **ClubLead Access**: Full CRUD operations on club projects, member management
+3. **Member Access**: Can update projects and add members, read-only for other operations
+4. **Guest Access**: No dashboard or project access
 
 ## API Usage Examples
 
@@ -637,7 +721,10 @@ curl -X POST http://localhost:3000/api/dashboard/project/create \
   -H "Content-Type: application/json" \
   -b cookies.txt \
   -d '{
-    "projectData": "example"
+    "title": "Web Development Club Platform",
+    "shortinfo": "A platform for club management and project collaboration",
+    "description": "This project aims to create a comprehensive platform for managing club activities, projects, and member interactions. It includes user authentication, role-based access control, and project management features.",
+    "techstack": "Node.js, Express.js, MongoDB, JWT, React.js"
   }'
 ```
 
@@ -730,6 +817,9 @@ This error is returned when:
 4. Input validation could be more comprehensive
 5. **Role verification logic may need review** - current implementation appears to have inverse logic
 6. Role-based middleware could benefit from more granular permissions
+7. **Project update endpoint allows Member access but creation/deletion requires higher permissions**
+8. **Project ID parameter handling needs clarification in update/delete operations**
+9. **Member addition to projects requires validation for duplicate entries**
 
 ### Recommended Improvements
 
@@ -743,6 +833,9 @@ This error is returned when:
 8. **Fix role verification middleware logic**
 9. **Add role-based route protection documentation**
 10. **Implement role assignment by Admin users only**
+11. **Add project ownership validation for update/delete operations**
+12. **Implement proper project ID validation middleware**
+13. **Add member duplicate check for project member additions**
 
 ## Testing
 
@@ -781,76 +874,19 @@ curl -X POST http://localhost:3000/api/auth/signup -H "Content-Type: application
 
 # Login and test restricted access
 curl -X POST http://localhost:3000/api/auth/login -c member_cookies.txt -H "Content-Type: application/json" -d '{"email":"member@test.com","password":"member123"}'
-curl -X POST http://localhost:3000/api/dashboard/project/create -b member_cookies.txt # Should return 403
+curl -X POST http://localhost:3000/api/dashboard/project/create -b member_cookies.txt # Should return 404 Unauthorized
 ```
 
-### Health Check
+**Test Member Project Update Access**:
 
-Server status can be verified by checking console output:
-
-```
-Database is connected
-Server was running at 3000
+```bash
+# Member can update projects
+curl -X PUT http://localhost:3000/api/dashboard/project/update -b member_cookies.txt -H "Content-Type: application/json"
 ```
 
-## Support and Maintenance
+**Test Guest Restrictions**:
 
-### Monitoring
-
-- Server logs available in console
-- Database connection status logged
-- Error details logged for debugging
-
-### Backup Recommendations
-
-- Regular MongoDB database backups
-- Environment file backup
-- Source code version control
-
-## Production Considerations
-
-### Security Enhancements Needed
-
-- HTTPS implementation
-- CORS configuration
-- Rate limiting
-- Input sanitization
-- SQL injection prevention
-- XSS protection headers
-- **Role assignment validation** (only Admins should assign sensitive roles)
-- **Granular permission system** for fine-tuned access control
-
-### Performance Optimizations
-
-- Database indexing
-- Connection pooling
-- Caching mechanisms
-- Load balancing preparation
-
----
-
-**Current Version**: 1.0.0  
-**Last Updated**: August 2025  
-**Database**: Blogging-platform  
-**Default Port**: 3000  
-**Features**: JWT Authentication, Role-Based Access Control (RBAC), Club Management
-
-## RBAC Implementation Summary
-
-### Roles and Capabilities:
-
-- **Admin**: Full system control, user management, all project operations
-- **ClubLead**: Club-specific project management, team leadership
-- **Member**: Project participation, limited dashboard access
-- **Guest**: Read-only access to public content
-
-### Security Benefits:
-
-- Prevents unauthorized access to sensitive operations
-- Hierarchical permission structure mimics real-world club organization
-- Granular control over feature access based on user responsibility
-- Enhanced security through role validation middleware
-
-### Route Protection:
-
-All dashboard routes are protected with appropriate role-based middleware to ensure users can only access features appropriate to their role level.
+```bash
+# Guest cannot access any project endpoints
+curl -X GET http://localhost:3000/api/dashboard/info -b guest_cookies.txt # Should return 403 Unauthorized
+```

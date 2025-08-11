@@ -26,13 +26,13 @@ async function handleLogin(req, res) {
   try {
     const { password } = req.body;
     const Userinfo = req.user;
-    const { name, email,role } = Userinfo;
+    const { name, email,role,_id } = Userinfo;
     const hashpassword = Userinfo.password;
     const isPasswordValid = await handleDecordPassword(hashpassword, password);
     if (isPasswordValid == false) {
       return res.status(404).json({ msg: "Invalid Password" });
     }
-    const token = await handleGenerateToken(name, email,role);
+    const token = await handleGenerateToken(name, email,role,_id);
     res.cookie("token", token, { maxAge: 24 * 60 * 60 * 1000 });//max 1 day
     return res.status(201).json({ msg: "Login is Sucessfull" });
   } catch (error) {
