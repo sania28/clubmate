@@ -1,4 +1,4 @@
-const { ClubleadVerification, GuestVerification } = require("../service/roleVerification");
+const { ClubleadVerification, GuestVerification, MemberVerification } = require("../service/roleVerification");
 async function ProjectcreateChecker(req, res, next) {
   const token = req.cookies.token
   const { title, shortinfo, description, techstack } = req.body;
@@ -12,7 +12,10 @@ async function ProjectcreateChecker(req, res, next) {
 }
 async function ProjectUpdateChecker(req,res,next) {
     const token = req.cookies.token;
-    
+    if(MemberVerification(token)==false){
+      return res.status(401).json({ msg: "Unauthorized" });
+    }
+    next()  
 }
 async function ProjectMembersChecker(req,res,next) {
   const token = req.cookies.token;
@@ -29,5 +32,6 @@ async function ProjectMembersChecker(req,res,next) {
 }
 module.exports = {
   ProjectcreateChecker,
-  ProjectMembersChecker
+  ProjectMembersChecker,
+  ProjectUpdateChecker,
 };
