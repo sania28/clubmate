@@ -28,7 +28,7 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(18, 9, 9, 0.95);
     backdrop-filter: blur(10px);
     z-index: 1000;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -64,7 +64,7 @@ body {
 
 .nav-link {
     text-decoration: none;
-    color: #333;
+    color: #2800f1;
     font-weight: 500;
     transition: color 0.3s ease;
 }
@@ -90,9 +90,9 @@ body {
 
 /* Hero Section */
 .hero {
-    padding: 120px 0 80px;
+  padding-top: calc(120px + 2rem);
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    color: rgb(73, 108, 235);
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -711,7 +711,7 @@ body {
 /* Ensure existing header and hero sections are consistent */
 .header {
     background-color: #1a1a2e; /* Dark background */
-    color: #fff;
+    color: #ffffff;
     padding: 1rem 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
@@ -746,21 +746,21 @@ body {
 }
 
 .nav-link {
-    color: #fff;
+    color: #07bfb9;
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s ease;
 }
 
 .nav-link:hover {
-    color: #00bcd4;
+    color: #000000;
 }
 
 /* Hero Section Adjustments */
 .hero {
     background: linear-gradient(to right, #1a1a2e, #2c3e50);
     color: #fff;
-    padding: 4rem 0;
+     padding: 8rem 0 4rem;
     text-align: center;
 }
 
@@ -830,13 +830,14 @@ body {
 }
 
 .btn-secondary {
-    background-color: transparent;
+    background-color: #00bed7;
     color: #fff;
-    border: 2px solid #fff;
+    border: 2px solid #00b9d1;
 }
 
 .btn-secondary:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: #0097a7;
+    border-color: #0097a7;
 }
 
 .hero-card {
