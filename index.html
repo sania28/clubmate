@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClubMate - Robonixx Club Management System</title>
+    <link rel="stylesheet" href="./frontend/dashBoard/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <i class="fas fa-robot"></i>
+                <span>ClubMate</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li> 
+                <li><a href="./frontend/others/about.html" class="nav-link">About</a></li>   <!--Added About page  -->
+                <li><a href="./frontend/others/contact.html" class="nav-link">Contact</a></li>  <!-- Added Path to contact Page -->
+                <li><a href="./frontend/noticeboard/noticeboard.html" class="nav-link">Notice</a></li>
+                <li><a href="./frontend/auth/login.html" class="nav-link">Sign In</a></li> <!-- Added Path to sign In Page -->
+                <li><a href="./frontend/auth/signup.html" class="nav-link">Sign Up</a></li> <!-- Added Path to signup Page -->
+
+            </ul>
+            <div class="auth-links">
+                <!-- Updated the path along, but Need authentication -->
+                <a href="./frontend/dashBoard/admin-dashboard.html" class="btn btn-sm btn-primary">Admin Dashboard</a>
+                <a href="./frontend/dashBoard/member-dashboard.html" class="btn btn-sm btn-secondary">Member Dashboard</a>
+            </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Streamline Your
+                    <span class="highlight">Technical Club</span>
+                    Operations
+                </h1>
+                <p class="hero-description">
+                    ClubMate is an open-source platform designed for student technical clubs like Robonixx.
+                    Manage events, coordinate teams, track projects, and share resources all in one place.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#features" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i>
+                        Get Started
+                    </a>
+                    <a href="https://github.com/sania28/clubmate" class="btn btn-secondary" target="_blank">
+                        <i class="fab fa-github"></i>
+                        View on GitHub
+                    </a>
+                    <a href="./frontend/others/docuSharing.html" class="btn btn-primary">
+                        <i class="fas fa-file-upload"></i>
+                        Document Sharing </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-card">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>Event Management</h3>
+                    <p>Schedule and organize club events seamlessly</p>
+                </div>
+                <div class="hero-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Team Coordination</h3>
+                    <p>Manage members and track participation</p>
+                </div>
+                <div class="hero-card">
+                    <i class="fas fa-project-diagram"></i>
+                    <h3>Project Tracking</h3>
+                    <p>Monitor project progress and showcase work</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Powerful Features for Modern Clubs</h2>
+                <p>Everything you need to run a successful technical club</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3>Event Calendar</h3>
+                    <p>Schedule workshops, competitions, and meetings with integrated registration system</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <h3>Member Management</h3>
+                    <p>Track member profiles, skills, and participation across all club activities</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3>Project Showcase</h3>
+                    <p>Display ongoing and completed projects with status tracking and documentation</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <h3>Notice Board</h3>
+                    <p>Share announcements, updates, and important information with all members</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <h3>Resource Sharing</h3>
+                    <p>Upload and share documents, tutorials, and learning materials easily</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Analytics Dashboard</h3>
+                    <p>Track club performance, member engagement, and event success metrics</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="tech-stack">
+        <div class="container">
+            <div class="section-header">
+                <h2>Built with Modern Technologies</h2>
+                <p>Reliable, scalable, and developer-friendly stack</p>
+            </div>
+            <div class="tech-grid">
+                <div class="tech-category">
+                    <h3>Frontend</h3>
+                    <div class="tech-items">
+                        <span class="tech-item">HTML/CSS</span>
+                        <span class="tech-item">JavaScript</span>
+                        <span class="tech-item">React</span>
+                    </div>
+                </div>
+                <div class="tech-category">
+                    <h3>Backend</h3>
+                    <div class="tech-items">
+                        <span class="tech-item">Node.js</span>
+                        <span class="tech-item">Express.js</span>
+                        <span class="tech-item">REST API</span>
+                    </div>
+                </div>
+                <div class="tech-category">
+                    <h3>Database</h3>
+                    <div class="tech-items">
+                        <span class="tech-item">MongoDB</span>
+                        <span class="tech-item">Firebase</span>
+                    </div>
+                </div>
+                <div class="tech-category">
+                    <h3>Tools</h3>
+                    <div class="tech-items">
+                        <span class="tech-item">Git</span>
+                        <span class="tech-item">GitHub</span>
+                        <span class="tech-item">VS Code</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Transform Your Club?</h2>
+                <p>Join the growing community of technical clubs using ClubMate to streamline their operations</p>
+                <div class="cta-buttons">
+                    <a href="https://github.com/sania28/clubmate" class="btn btn-primary" target="_blank">
+                        <i class="fab fa-github"></i>
+                        Contribute on GitHub
+                    </a>
+                    <a href="./frontend/auth/login.html" class="btn btn-outline">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Login to ClubMate
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <i class="fas fa-robot"></i>
+                        <span>ClubMate</span>
+                    </div>
+                    <p>Open-source club management system for technical communities</p>
+                    <div class="social-links">
+                        <a href="https://github.com/sania28/clubmate" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" target="_blank">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" target="_blank">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="./index.html#features">Features</a></li>
+                        <li><a href="./frontend/others/about.html">About</a></li>
+                        <li><a href="https://github.com/sania28/clubmate">Report Issues</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Community</h3>
+                    <ul>
+                        <!-- Updated the path for Github Repo -->
+                        <li><a href="https://github.com/sania28/clubmate">Contributing</a></li>
+                        <li><a href="https://github.com/sania28/clubmate">Code of Conduct</a></li>
+                        <li><a href="https://github.com/sania28/clubmate">Discussions</a></li>
+                        <li><a href="https://github.com/sania28/clubmate">Documentation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-envelope"></i> clubmate@robonixx.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Open Source Community</p>
+                    <p><i class="fas fa-globe"></i> Available Worldwide</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ClubMate. Open source under MIT License.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>
