@@ -371,11 +371,11 @@ body {
     padding: 60px 0 20px;
 }
 
-.footer-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-bottom: 2rem;
+.footer-columns {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Always 4 columns */
+  gap: 2rem;
+  margin-bottom: 2rem;
 }
 
 .footer-brand {
@@ -423,6 +423,17 @@ body {
     color: #2563eb;
 }
 
+.footer a {
+  color: #94a3b8;         /* soft gray, matches your screenshot */
+  text-decoration: none;  /* remove underline */
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: #2563eb;         /* blue on hover */
+  text-decoration: none;  /* keep underline disabled on hover too */
+}
+
 .social-links {
     display: flex;
     gap: 1rem;
@@ -446,6 +457,14 @@ body {
     color: white;
     transform: translateY(-2px);
 }
+
+.social-links a i {
+    color: #94a3b8 !important; /* force all icons to use gray */
+}
+.social-links a:hover i {
+    color: white !important; /* on hover make them white */
+}
+
 
 .footer-bottom {
     text-align: center;

@@ -6,7 +6,7 @@
     <title>ClubMate - Robonixx Club Management System</title>
     <link rel="stylesheet" href="../dashBoard/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
     <header class="header">
@@ -197,57 +197,81 @@
         </div>
     </section>
 
-    <footer id="contact" class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="footer-brand">
-                        <i class="fas fa-robot"></i>
-                        <span>ClubMate</span>
-                    </div>
-                    <p>Open-source club management system for technical communities</p>
-                    <div class="social-links">
-                        <a href="https://github.com/yadavaman13/clubmate" target="_blank">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="#" target="_blank">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" target="_blank">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#features">Features</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="https://github.com/yadavaman13/clubmate/issues">Report Issues</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Community</h3>
-                    <ul>
-                        <li><a href="https://github.com/yadavaman13/clubmate/blob/main/CONTRIBUTING.md">Contributing</a></li>
-                        <li><a href="https://github.com/yadavaman13/clubmate/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
-                        <li><a href="https://github.com/yadavaman13/clubmate/discussions">Discussions</a></li>
-                        <li><a href="https://github.com/yadavaman13/clubmate/wiki">Documentation</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Contact</h3>
-                    <p><i class="fas fa-envelope"></i> clubmate@robonixx.com</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Open Source Community</p>
-                    <p><i class="fas fa-globe"></i> Available Worldwide</p>
-                </div>
+    <footer class="footer">
+        <div class="container footer-columns">
+
+            <!-- Column 1: Brand + About -->
+            <div class="footer-col brand-col">
+            <div class="footer-brand">
+                <i class="fas fa-robot"></i>
+                <span>ClubMate</span>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 ClubMate. Open source under MIT License.</p>
+            <p>
+                ClubMate is an open-source platform for student technical clubs,
+                helping you manage events, members, projects, and resources—all in one place.
+                Built by and for the community.
+            </p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
             </div>
+            </div>
+
+            <!-- Column 2: Navigation -->
+            <div class="footer-col">
+            <h3>Navigation</h3>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="faq.html">FAQs</a></li>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+            </ul>
+            </div>
+
+            <!-- Column 3: Quick Links + Community (merged together) -->
+            <div class="footer-col">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#">Report Issues</a></li>
+                <li><a href="#">Sign In</a></li>
+                <li><a href="#">Sign Up</a></li>
+                <li><a href="#">Admin Dashboard</a></li>
+                <li><a href="#">Member Dashboard</a></li>
+            </ul>
+
+            <h3 style="margin-top:1.5rem;">Community</h3>
+            <ul>
+                <li><a href="#">Contributing</a></li>
+                <li><a href="#">Code of Conduct</a></li>
+                <li><a href="#">Discussions</a></li>
+                <li><a href="#">Documentation</a></li>
+            </ul>
+            </div>
+
+            <!-- Column 4: Support + Contact -->
+            <div class="footer-col">
+            <h3>Support</h3>
+            <p><i class="fas fa-envelope"></i> support@clubmate.com</p>
+            <p>For help or feedback, email our support team anytime.</p>
+
+            <h3 style="margin-top:1.5rem;">Contact</h3>
+            <p><i class="fas fa-envelope"></i> clubmate@robonixx.com</p>
+            <p><i class="fas fa-map-marker-alt"></i> Open Source Community</p>
+            <p><i class="fas fa-globe"></i> Available Worldwide</p>
+            </div>
+
         </div>
-    </footer>
+
+        <!-- Bottom -->
+        <div class="footer-bottom">
+            <p>&copy; 2025 ClubMate. Open source under MIT License.</p>
+        </div>
+</footer>
+
+
+
 
     <script src="script.js"></script>
 </body>
