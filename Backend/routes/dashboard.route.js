@@ -5,19 +5,20 @@ const {
   handleProjectRead,
   handleProjectUpdate,
   handleProjectdelete,
+  handleProjectMembers,
 } = require("../controllers/dashBoard.controller");
 const {
-  ClubleadVerification,
-  MemberVerification,
-  GuestVerification,
-} = require("../middleware/roleVerification");
+  ProjectcreateChecker,
+  ProjectMembersChecker,
+  ProjectUpdateChecker,
+} = require("../middleware/projectChecker.middleware");
 const dashroute = express.Router();
 
-dashroute.get("/dashinfo", handleDashboardinfo);
-dashroute.post("/project/create", ClubleadVerification, handleProjectCreate);
-dashroute.patch("/project/update", MemberVerification, handleProjectUpdate);
-dashroute.put("/project/member", GuestVerification, handleProjectUpdate);
-dashroute.get("/project/read", handleProjectRead);
-dashroute.delete("/project/delete", ClubleadVerification,handleProjectdelete);
+dashroute.get("/dashinfo/allproject", handleDashboardinfo);
+dashroute.post("/project/create", ProjectcreateChecker, handleProjectCreate);
+dashroute.patch("/project/update/:id",ProjectUpdateChecker, handleProjectUpdate);
+dashroute.put("/project/member/:id", ProjectMembersChecker, handleProjectMembers);
+dashroute.get("/project/read/:id", handleProjectRead);
+dashroute.delete("/project/delete/:id", handleProjectdelete);
 
 module.exports = dashroute;
