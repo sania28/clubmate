@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ClubMate - Robonixx Club Management System</title>
-    <link rel="stylesheet" href="../dashBoard/styles.css">
+    <link rel="stylesheet" href="./frontend/dashBoard/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -19,17 +19,18 @@
             </div>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#features" class="nav-link">Features</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="frontend/contact.html" class="nav-link">Contact</a></li>
-                <li><a href="frontend/login.html" class="nav-link">Sign In</a></li>
-                <li><a href="frontend/signup.html" class="nav-link">Sign Up</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li> 
+                <li><a href="./frontend/others/about.html" class="nav-link">About</a></li>   <!--Added About page  -->
+                <li><a href="./frontend/others/contact.html" class="nav-link">Contact</a></li>  <!-- Added Path to contact Page -->
+                <li><a href="./frontend/noticeboard/noticeboard.html" class="nav-link">Notice</a></li>
+                <li><a href="./frontend/auth/login.html" class="nav-link">Sign In</a></li> <!-- Added Path to sign In Page -->
+                <li><a href="./frontend/auth/signup.html" class="nav-link">Sign Up</a></li> <!-- Added Path to signup Page -->
 
             </ul>
             <div class="auth-links">
-                
-                <a href="admin-dashboard.html" class="btn btn-sm btn-primary">Admin Dashboard</a>
-                <a href="member-dashboard.html" class="btn btn-sm btn-secondary">Member Dashboard</a>
+                <!-- Updated the path along, but Need authentication -->
+                <a href="./frontend/dashBoard/admin-dashboard.html" class="btn btn-sm btn-primary">Admin Dashboard</a>
+                <a href="./frontend/dashBoard/member-dashboard.html" class="btn btn-sm btn-secondary">Member Dashboard</a>
             </div>
             <div class="nav-toggle">
                 <span></span>
@@ -56,11 +57,11 @@
                         <i class="fas fa-rocket"></i>
                         Get Started
                     </a>
-                    <a href="https://github.com/yadavaman13/clubmate" class="btn btn-secondary" target="_blank">
+                    <a href="https://github.com/sania28/clubmate" class="btn btn-secondary" target="_blank">
                         <i class="fab fa-github"></i>
                         View on GitHub
                     </a>
-                    <a href="frontend/docuSharing.html" class="btn btn-primary">
+                    <a href="./frontend/others/docuSharing.html" class="btn btn-primary">
                         <i class="fas fa-file-upload"></i>
                         Document Sharing </a>
                 </div>
@@ -186,11 +187,11 @@
                 <h2>Ready to Transform Your Club?</h2>
                 <p>Join the growing community of technical clubs using ClubMate to streamline their operations</p>
                 <div class="cta-buttons">
-                    <a href="https://github.com/yadavaman13/clubmate" class="btn btn-primary" target="_blank">
+                    <a href="https://github.com/sania28/clubmate" class="btn btn-primary" target="_blank">
                         <i class="fab fa-github"></i>
                         Contribute on GitHub
                     </a>
-                    <a href="frontend/login.html" class="btn btn-outline">
+                    <a href="./frontend/auth/login.html" class="btn btn-outline">
                         <i class="fas fa-sign-in-alt"></i>
                         Login to ClubMate
                     </a>
@@ -209,7 +210,7 @@
                     </div>
                     <p>Open-source club management system for technical communities</p>
                     <div class="social-links">
-                        <a href="https://github.com/yadavaman13/clubmate" target="_blank">
+                        <a href="https://github.com/sania28/clubmate" target="_blank">
                             <i class="fab fa-github"></i>
                         </a>
                         <a href="#" target="_blank">
@@ -223,21 +224,20 @@
                 <div class="footer-section">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#features">Features</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="https://github.com/yadavaman13/clubmate/issues">Report Issues</a></li>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="./index.html#features">Features</a></li>
+                        <li><a href="./frontend/others/about.html">About</a></li>
+                        <li><a href="https://github.com/sania28/clubmate">Report Issues</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h3>Community</h3>
                     <ul>
-                        <li><a href="https://github.com/yadavaman13/clubmate/blob/main/CONTRIBUTING.md">Contributing</a>
-                        </li>
-                        <li><a href="https://github.com/yadavaman13/clubmate/blob/main/CODE_OF_CONDUCT.md">Code of
-                                Conduct</a></li>
-                        <li><a href="https://github.com/yadavaman13/clubmate/discussions">Discussions</a></li>
-                        <li><a href="https://github.com/yadavaman13/clubmate/wiki">Documentation</a></li>
+                        <!-- Updated the path for Github Repo -->
+                        <li><a href="https://github.com/sania28/clubmate">Contributing</a></li>
+                        <li><a href="https://github.com/sania28/clubmate">Code of Conduct</a></li>
+                        <li><a href="https://github.com/sania28/clubmate">Discussions</a></li>
+                        <li><a href="https://github.com/sania28/clubmate">Documentation</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -253,7 +253,7 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="./script.js"></script>
 </body>
 
 </html>
