@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ClubMate - Document Upload & Sharing</title>
+  <style>
+    body {
+      font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #5a60ff, #8e37ff);
+      margin: 0;
+      padding: 2rem;
+      color: #fff;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.1);
+      padding: 2rem;
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    }
+
+    /* Upload box */
+    .upload-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border: 2px dashed #ffd84d;
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 4rem;
+      background: rgba(255,255,255,0.15);
+      text-align: center;
+      cursor: pointer;
+      transition: 0.3s;
+      min-height: 150px;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .upload-box:hover {
+      background: rgba(255,255,255,0.25);
+    }
+
+    .upload-box input {
+      display: none;
+    }
+
+    .upload-box p {
+      font-size: 1rem;
+      margin: 0.5rem 0;
+    }
+
+    .document-list {
+      margin-top: 1rem;
+    }
+
+    .document {
+      background: rgba(255,255,255,0.15);
+      padding: 1rem 1.5rem;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .document a {
+      color: #ffd84d;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .document a:hover {
+      text-decoration: underline;
+    }
+
+    .document span {
+      font-size: 0.85rem;
+      color: #ddd;
+      margin-left: 10px;
+    }
+
+    .download-btn {
+      background: #ffd84d;
+      color: #333;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+      text-align: center;
+    }
+
+    .download-btn:hover {
+      background: #ffcc00;
+    }
+    p{
+        text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>Clubmate- Document Upload & Sharing</h1>
+
+  <div class="container">
+    <!-- Upload Area -->
+    <label class="upload-box" id="uploadArea">
+      <input type="file" id="fileUpload" multiple />
+      <p>Drag & Drop or Click to Upload Files</p>
+    </label>
+
+    <!-- Uploaded Documents -->
+    <div class="document-list" id="documentList">
+        <div class="document">
+            <div>
+            <a href="#" download>example.pdf</a>
+            <span>(123.4 KB)</span>
+            </div>
+            <button class="download-btn" onclick="window.open('#', '_blank')">View</button>
+        </div>
+        <div class="document">
+            <div>
+            <a href="#" download>sample.docx</a>
+            <span>(456.7 KB)</span>
+            </div>
+            <button class="download-btn" onclick="window.open('#', '_blank')">View</button>
+        </div>
+    </div>
+  </div>
+</br>
+  
+      <p>Supported formats: PDF, DOCX, TXT, JPG, PNG 
+      </br> Max file size: 10 MB</p>
+  <script>
+    const fileInput = document.getElementById("fileUpload");
+    const uploadArea = document.getElementById("uploadArea");
+    const documentList = document.getElementById("documentList");
+
+    // Handle file selection
+    fileInput.addEventListener("change", () => {
+      handleFiles(fileInput.files);
+    });
+
+    // Drag & Drop functionality
+    uploadArea.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      uploadArea.style.background = "rgba(255,255,255,0.3)";
+    });
+
+    uploadArea.addEventListener("dragleave", () => {
+      uploadArea.style.background = "rgba(255,255,255,0.15)";
+    });
+
+    uploadArea.addEventListener("drop", (e) => {
+      e.preventDefault();
+      uploadArea.style.background = "rgba(255,255,255,0.15)";
+      handleFiles(e.dataTransfer.files);
+    });
+
+    // Function to display files
+    function handleFiles(files) {
+      for (let file of files) {
+        const listItem = document.createElement("div");
+        listItem.classList.add("document");
+
+        // Create blob link for local file preview
+        const fileURL = URL.createObjectURL(file);
+
+        listItem.innerHTML = `
+          <div>
+            <a href="${fileURL}" download="${file.name}">${file.name}</a>
+            <span>(${(file.size / 1024).toFixed(1)} KB)</span>
+          </div>
+          <button class="download-btn" onclick="window.open('${fileURL}', '_blank')">View</button>
+        `;
+
+        documentList.prepend(listItem);
+      }
+    }
+  </script>
+</body>
+</html>

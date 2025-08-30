@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us - ClubMate</title>
+  <link rel="stylesheet" href="../dashBoard/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    .about-section {
+      padding: 80px 20px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    .about-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .about-section h2 {
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+      color: #222;
+    }
+
+    .about-section p {
+      font-size: 1.1rem;
+      margin-bottom: 40px;
+      color: #555;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+      text-align: left;
+    }
+
+    .feature-card {
+      background-color: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .feature-card h4 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      color: #007bff;
+    }
+
+    .feature-card p {
+      font-size: 1rem;
+      color: #666;
+    }
+
+    .cta-buttons {
+      margin-top: 40px;
+    }
+
+    .cta-buttons a {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 25px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 5px;
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+    }
+
+    .btn-secondary {
+      background-color: #333;
+    }
+
+    @media (max-width: 600px) {
+      .about-section h2 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <nav class="nav">
+      <div class="nav-brand">
+        <i class="fas fa-robot"></i>
+        <span>ClubMate</span>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="/index.html" class="nav-link">Home</a></li>
+        <li><a href="/index.html#features" class="nav-link">Features</a></li>
+        <li><a href="#" class="nav-link">About</a></li>
+        <li><a href="./contact.html" class="nav-link">Contact</a></li>
+        <li><a href="../noticeboard/noticeboard.html" class="nav-link">Notice</a></li>
+        <li><a href="../auth/login.html" class="nav-link">Sign In</a></li>
+        <li><a href="../auth/signup.html" class="nav-link">Sign Up</a></li>
+      </ul>
+      <div class="auth-links">
+        <a href="../dashBoard/admin-dashboard.html" class="btn btn-sm btn-primary">Admin Dashboard</a>
+        <a href="../dashBoard/member-dashboard.html" class="btn btn-sm btn-secondary">Member Dashboard</a>
+      </div>
+      <div class="nav-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </header>
+
+  <section class="about-section">
+    <div class="about-container">
+      <h2>Streamline Your Technical Club</h2>
+      <p>
+        <strong>ClubMate</strong> is an open-source web platform designed to streamline the operations of student technical clubs like <strong>Robonixx</strong>. It provides tools for event scheduling, team coordination, project tracking, announcements, and resource sharing — all in one place.
+      </p>
+
+      <div class="cta-buttons">
+        <a href="/frontend/auth/signup.html" class="btn-primary">Get Started</a>
+        <a href="https://github.com/sania28/clubmate" target="_blank" class="btn-secondary">View on GitHub</a>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <h4>Event Management</h4>
+          <p>Schedule and organize club events seamlessly.</p>
+        </div>
+        <div class="feature-card">
+          <h4>Team Coordination</h4>
+          <p>Manage members and track participation.</p>
+        </div>
+        <div class="feature-card">
+          <h4>Project Tracking</h4>
+          <p>Monitor project progress and showcase work.</p>
+        </div>
+        <div class="feature-card">
+          <h4>Event Calendar</h4>
+          <p>Workshops, competitions, and meetings with registration support.</p>
+        </div>
+        <div class="feature-card">
+          <h4>Member Management</h4>
+          <p>Track member profiles, skills, and participation history.</p>
+        </div>
+        <div class="feature-card">
+          <h4>Project Showcase</h4>
+          <p>Highlight ongoing and completed projects with full documentation.</p>
+        </div>
+        <div class="feature-card">
+          <h4>Notice Board</h4>
+          <p>Share announcements, updates, and key information with all members.</p>
+        </div>
+        <div class="feature-card">
+          <h4>Resource Sharing</h4>
+          <p>Upload and share documents, tutorials, and learning materials.</p>
+        </div>
+        <div class="feature-card">
+          <h4>Analytics Dashboard</h4>
+          <p>Track performance, engagement, and event success metrics.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <div class="footer-brand">
+            <i class="fas fa-robot"></i>
+            <span>ClubMate</span>
+          </div>
+          <p>Open-source club management system for technical communities</p>
+          <div class="social-links">
+            <a href="https://github.com/sania28/clubmate" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/index.html#features">Features</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="https://github.com/sania28/clubmate">Report Issues</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Community</h3>
+          <ul>
+            <li><a href="https://github.com/sania28/clubmate">Contributing</a></li>
+            <li><a href="https://github.com/sania28/clubmate">Code of Conduct</a></li>
+            <li><a href="https://github.com/sania28/clubmate">Discussions</a></li>
+            <li><a href="https://github.com/sania28/clubmate">Documentation</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <p><i class="fas fa-envelope"></i> clubmate@robonixx.com</p>
+          <p><i class="fas fa-map-marker-alt"></i> Open Source Community</p>
+          <p><i class="fas fa-globe"></i> Available Worldwide</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 ClubMate. Open source under MIT License.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+/* Global Background & Font */
+body {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Main Section */
+.notice-main {
+  padding-top: 100px;
+  padding-bottom: 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header Styling */
+.notice-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Animated, Glowing, Typing Title */
+.notice-title {
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: #1e293b;
+  animation: glow 2.5s ease-in-out infinite alternate;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 4px solid #2563eb;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 8px #2563eb88, 0 0 16px #2563eb33;
+  }
+  to {
+    text-shadow: 0 0 15px #2563eb, 0 0 30px #3b82f6;
+  }
+}
+
+/* Notice Card Grid */
+.notice-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 0 2rem;
+}
+
+/* Card Styles */
+.notice-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 2rem;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 0.6s ease forwards;
+}
+
+.notice-card h3 {
+  font-size: 1.4rem;
+  color: #1e293b;
+  margin-bottom: 0.8rem;
+}
+
+.notice-card p {
+  color: #334155;
+  margin-bottom: 1rem;
+}
+
+.notice-meta {
+  font-size: 0.9rem;
+  color: #64748b;
+  text-align: right;
+}
+
+/* Card Fade-In Animation */
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
