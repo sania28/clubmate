@@ -35,7 +35,11 @@ async function del(key) {
 // ✅ Delete keys by pattern (Redis v4+ compatible)
 async function delPattern(pattern) {
   try {
-    const keys = await redisClient.sendCommand(["KEYS", `*${pattern}*`]); // v4 way
+    const stream = redisClient.scanIterator({ MATCH: `*${pattern}*` });
+    const keys = [];
+    for await (const key of stream) {
+      keys.push(key);
+    }
     if (keys.length > 0) {
       await redisClient.del(keys);
       console.log(`🗑 Deleted cache keys: ${keys}`);
