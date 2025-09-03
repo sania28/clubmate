@@ -18,7 +18,6 @@ const cacheMiddleware = require("../middleware/cache.middleware");
 const dashroute = express.Router();
 
 dashroute.get("/dashinfo/allproject", (req, res, next) => {
-  console.log("➡️ Inside /dashinfo/allproject handler");
   next();
 }, cacheMiddleware, handleDashboardinfo);
 dashroute.get("/project/read/:id", cacheMiddleware, handleProjectRead);
