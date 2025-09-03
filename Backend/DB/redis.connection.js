@@ -1,4 +1,3 @@
-// Backend/DB/redis.connection.js
 const { createClient } = require("redis");
 
 const redisClient = createClient({
@@ -12,13 +11,5 @@ redisClient.on("connect", () => {
 redisClient.on("error", (err) => {
   console.error("❌ Redis connection error:", err);
 });
-
-(async () => {
-  try {
-    await redisClient.connect();
-  } catch (err) {
-    console.error("❌ Failed to connect to Redis:", err);
-  }
-})();
 
 module.exports = redisClient;
