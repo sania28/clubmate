@@ -14,6 +14,8 @@
 | 📰 **Notice Board**          | Pin announcements and updates for all members.                |
 | 📁 **Document Sharing**      | Upload meeting notes, resources, and relevant files.          |
 | 🔐 **Role-Based Dashboards** | Separate admin and member views with appropriate privileges.  |
+| 🔐 **⚡ Redis Caching**     |Backend caching middleware for faster responses on GET routes  |
+
 
 ---
 
@@ -30,32 +32,75 @@
 
 ```bash
 clubmate/
-├── frontend/                # Frontend code organized by features
+├── .git/                    # Git versioning files
+├── .github/                 # GitHub workflows
+│   └── workflows/
+│       └── jekyll-docker.yml
+├── Backend/                 # Backend source code
+│   ├── controllers/         # Route controllers
+│   │   ├── auth.controller.js
+│   │   └── dashBoard.controller.js
+│   ├── DB/                  # Database connections
+│   │   ├── database.connection.js
+│   │   └── redis.connection.js       # Redis client connection
+│   ├── middleware/          # Middleware for auth, caching, validation
+│   │   ├── auth.middleware.js
+│   │   ├── cache.middleware.js       # Redis caching middleware
+│   │   ├── jwtverification.middleware.js
+│   │   ├── multer.js
+│   │   └── projectChecker.middleware.js
+│   ├── modals/              # MongoDB models
+│   │   ├── project.modal.js
+│   │   └── user.modal.js
+│   ├── routes/              # API routes
+│   │   ├── auth.route.js
+│   │   ├── dashboard.route.js
+│   │   └── upload.js
+│   ├── service/             # Service modules
+│   │   ├── cache.service.js           # Redis caching service
+│   │   ├── cloudinary.js
+│   │   ├── hashPassword.js
+│   │   ├── jwtTokenGenerateAndDecode.js
+│   │   └── roleVerification.js
+│   ├── .env                 # Environment variables
+│   ├── app.js               # Express app setup
+│   ├── server.js            # Server entry point
+│   ├── package.json
+│   ├── package-lock.json
+│   └── Readme.md
+├── frontend/                # Frontend source code
 │   ├── auth/               # Authentication pages
 │   │   ├── login.html
 │   │   ├── signup.html
 │   │   ├── auth.css
 │   │   └── auth.js
+│   ├── dashBoard/          # Dashboards
+│   │   ├── admin-dashboard.html
+│   │   ├── member-dashboard.html
+│   │   └── styles.css
+│   ├── noticeboard/        # Notice board module
+│   │   ├── noticeboard.html
+│   │   ├── script.js
+│   │   └── style.css
 │   ├── team/               # Team management module
 │   │   ├── team.html
 │   │   ├── team.css
 │   │   └── team.js
-│   ├── events/             # Event management pages
-│   ├── projects/           # Project tracking module
-│   ├── dashboard/          # User dashboards
-│   ├── public/             # Static assets (images, icons)
-│   ├── styles.css          # Global styles
-│   └── index.html          # Landing page
-├── backend/                # Merged backend with Cloudinary integration
-│   ├── controllers/        # Route controllers
-│   ├── routes/             # API routes
-│   ├── models/             # Database models
-│   ├── middleware/         # Authentication & validation
-│   ├── uploads/            # File upload handling
-│   ├── config/             # Database & Cloudinary config
-│   └── server.js           # Main server file
-├── docs/                   # Documentation and resources
-└── README.md
+│   ├── others/             # Additional pages
+│   │   ├── about.html
+│   │   ├── contact.html
+│   │   └── docuSharing.html
+│   ├── public/             # Static assets
+│   │   ├── login.png
+│   │   └── sign-up.png
+│   ├── index.html
+│   ├── LICENSE
+│   ├── License.md
+│   └── script.js
+├── .gitignore
+├── index.html
+├── README.md
+└── script.js
 ```
 
 ---
