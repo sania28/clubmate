@@ -22,7 +22,7 @@ dashroute.get("/dashinfo/allproject", (req, res, next) => {
 }, cacheMiddleware, handleDashboardinfo);
 dashroute.get("/project/read/:id", cacheMiddleware, handleProjectRead);
 
-dashroute.post("/project/create", handleProjectCreate);
+dashroute.post("/project/create",ProjectcreateChecker, handleProjectCreate);
 dashroute.patch("/project/update/:id", ProjectUpdateChecker, handleProjectUpdate);
 dashroute.put("/project/member/:id", ProjectMembersChecker, handleProjectMembers);
 dashroute.delete("/project/delete/:id", handleProjectdelete);
