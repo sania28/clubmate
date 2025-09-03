@@ -45,8 +45,8 @@ async function handleProjectCreate(req, res) {
 
     return res.status(201).json(data);
   } catch (error) {
-  console.error("Error creating project:", error); // not just error.message
-  res.status(500).json({ error: error.message, stack: error.stack });
+  console.error("Error creating project:", error);
+  res.status(500).json({ error: "An internal server error occurred." });
 }
 
 }
