@@ -16,11 +16,9 @@
     "dotenv": "^17.2.2",
     "express": "^5.1.0",
     "fs": "^0.0.1-security",
-    "ioredis": "^5.7.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.18.0",
     "multer": "^2.0.2",
-    "node-cache": "^5.1.2",
     "redis": "^4.7.1"
   },
   "devDependencies": {
