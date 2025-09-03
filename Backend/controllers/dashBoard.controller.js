@@ -65,6 +65,7 @@ async function handleProjectUpdate(req, res) {
 
     // ✅ Invalidate cache
     await cacheService.delPattern("/dashinfo/allproject");
+    await cacheService.del(`/api/dashboard/project/read/${Id}`);
 
     return res.status(200).json(updatedData);
   } catch (error) {
