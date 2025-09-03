@@ -19,7 +19,7 @@ async function cacheMiddleware(req, res, next) {
     res.sendResponse = res.json;
     res.json = async (body) => {
       try {
-        await cacheService.set(key, JSON.stringify(body), 60); // cache for 60s
+        await cacheService.set(key, JSON.stringify(body)); // cache for default TTL
         console.log(`✅ Response cached for ${key}`);
       } catch (err) {
         console.error(`❌ Failed to cache response for ${key}:`, err);
