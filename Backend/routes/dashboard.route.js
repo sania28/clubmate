@@ -7,18 +7,25 @@ const {
   handleProjectdelete,
   handleProjectMembers,
 } = require("../controllers/dashBoard.controller");
+
 const {
   ProjectcreateChecker,
   ProjectMembersChecker,
   ProjectUpdateChecker,
 } = require("../middleware/projectChecker.middleware");
+
+const cacheMiddleware = require("../middleware/cache.middleware");
 const dashroute = express.Router();
 
-dashroute.get("/dashinfo/allproject", handleDashboardinfo);
-dashroute.post("/project/create", ProjectcreateChecker, handleProjectCreate);
-dashroute.patch("/project/update/:id",ProjectUpdateChecker, handleProjectUpdate);
+dashroute.get("/dashinfo/allproject", (req, res, next) => {
+  console.log("➡️ Inside /dashinfo/allproject handler");
+  next();
+}, cacheMiddleware, handleDashboardinfo);
+dashroute.get("/project/read/:id", cacheMiddleware, handleProjectRead);
+
+dashroute.post("/project/create", handleProjectCreate);
+dashroute.patch("/project/update/:id", ProjectUpdateChecker, handleProjectUpdate);
 dashroute.put("/project/member/:id", ProjectMembersChecker, handleProjectMembers);
-dashroute.get("/project/read/:id", handleProjectRead);
 dashroute.delete("/project/delete/:id", handleProjectdelete);
 
 module.exports = dashroute;

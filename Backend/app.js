@@ -20,7 +20,12 @@ app.use(cors());
 app.use('/public', express.static(path.join(__dirname, '../public')));
 
 app.use("/api/auth", router);
-app.use("/api/dashboard",jwtValidation ,dashroute);
+
+app.use("/api/dashboard", (req, res, next) => {
+  console.log("➡️ Hit /api/dashboard route:", req.method, req.url);
+  next();
+}, jwtValidation, dashroute);
+
 
 app.use("/api/upload", uploadRoutes);
 
