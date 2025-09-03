@@ -19,15 +19,12 @@ async function handleDashboardinfo(req, res) {
 
 // 📌 CREATE new project
 async function handleProjectCreate(req, res) {
-  console.log("Incoming cookies:", req.cookies);
-  console.log("REQ BODY:", req.body);
   try {
     const token = req.cookies.token;
     const decord = await handleDecodeToken(token);
     const Id = decord._id;
 
     const { title, shortinfo, description, techstack } = req.body;
-    console.log(req.body)
 
     const newProject = await project.create({
       title,
