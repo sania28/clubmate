@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ClubMate — Club management for student teams</title>
+  <meta name="description" content="ClubMate — Event calendar, team management, project tracker, noticeboard and more for student clubs." />
+
+  <!-- Simple landing page -->
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --muted:#9aa6bf;
+      --accent:#5eead4;
+      --accent-2:#60a5fa;
+      --glass: rgba(255,255,255,0.04);
+      --radius: 12px;
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg) 0%, #071224 100%);color:#e6eef8}
+    .container{max-width:1100px;margin:0 auto;padding:28px}
+    header{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-weight:700;color:#05202e}
+    .brand h1{font-size:18px;margin:0}
+    nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-size:15px}
+    .btn{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#05202e;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:600}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:48px 0}
+    .hero h2{font-size:40px;margin:0 0 12px;line-height:1.03}
+    .hero p{color:var(--muted);margin:0 0 22px}
+    .hero .kpis{display:flex;gap:16px;margin-top:18px}
+    .kpi{background:var(--glass);padding:10px 14px;border-radius:10px;color:var(--muted);font-weight:600}
+    .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:20px;border-radius:14px}
+
+    .features{margin-top:22px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .feature{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:18px;border-radius:12px;min-height:110px}
+    .feature h4{margin:6px 0 0}
+    .feature p{color:var(--muted);font-size:13px;margin:8px 0 0}
+
+    footer{border-top:1px solid rgba(255,255,255,0.03);padding:20px 0;margin-top:32px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr;}
+      .features{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:640px){
+      nav a{display:none}
+      .features{grid-template-columns:1fr}
+      .logo{width:38px;height:38px}
+      .hero h2{font-size:28px}
+      .container{padding:18px}
+    }
+    .muted{color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">CM</div>
+        <div>
+          <h1>ClubMate</h1>
+          <div class="muted" style="font-size:13px">Open-source club management</div>
+        </div>
+      </div>
+
+      <nav>
+        <a href="frontend/others/about.html">About</a>
+        <a href="frontend/noticeboard/noticeboard.html">Noticeboard</a>
+        <a href="frontend/team/team.html">Team</a>
+        <a href="frontend/auth/login.html">Login</a>
+        <a class="btn" href="frontend/auth/signup.html">Join Now</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <h2>Make club work effortless — plan events, track projects, manage teams.</h2>
+          <p>ClubMate brings everything a student technical club needs — event scheduling, member roles, project tracking and a handy noticeboard — into one simple web app.</p>
+
+          <div class="kpis">
+            <div class="kpi">Events • Calendar</div>
+            <div class="kpi">Projects • Tracker</div>
+            <div class="kpi">Teams • Roles</div>
+          </div>
+
+          <div style="margin-top:20px;display:flex;gap:12px;align-items:center">
+            <a class="btn" href="frontend/auth/signup.html">Join ClubMate</a>
+            <a class="btn ghost" href="#features">Explore</a>
+          </div>
+        </div>
+
+        <aside class="hero-card">
+          <h3 style="margin:0 0 10px">Next event</h3>
+          <p class="muted" style="margin:0 0 8px">Hackathon — 5th Oct • 10:00 AM</p>
+          <div style="height:12px;background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:8px;margin-top:12px"></div>
+          <p class="muted" style="font-size:13px;margin-top:12px">Tip: Replace this dynamically later using events API.</p>
+        </aside>
+      </section>
+
+      <section id="features">
+        <h3 style="margin:18px 0 8px">Features</h3>
+        <p class="muted" style="margin:0 0 12px;max-width:760px">Everything to run a student club smoothly. Built for contributors — clear HTML/CSS/JS so beginners can jump in.</p>
+
+        <div class="features">
+          <div class="feature">
+            <strong>Event Calendar</strong>
+            <h4>Schedule & manage events</h4>
+            <p>Organise workshops, hackathons and meetings with registration flow.</p>
+          </div>
+
+          <div class="feature">
+            <strong>Team Management</strong>
+            <h4>Members & roles</h4>
+            <p>Add maintainers, organizers and assign roles to members.</p>
+          </div>
+
+          <div class="feature">
+            <strong>Project Tracker</strong>
+            <h4>Track progress</h4>
+            <p>Showcase ongoing projects and mark milestones.</p>
+          </div>
+
+          <div class="feature">
+            <strong>Notice Board</strong>
+            <h4>Announcements</h4>
+            <p>Pin timely updates and meeting notes for everyone.</p>
+          </div>
+
+          <div class="feature">
+            <strong>Document Sharing</strong>
+            <h4>Upload resources</h4>
+            <p>Share templates, slides, and code snippets with the club.</p>
+          </div>
+
+          <div class="feature">
+            <strong>Role-Based Dashboards</strong>
+            <h4>Admin & Member views</h4>
+            <p>Different views for maintainers and members with proper access control.</p>
+          </div>
+        </div>
+      </section>
+
+      <section style="margin-top:20px">
+        <h3 style="margin-bottom:10px">Get involved</h3>
+        <p class="muted" style="margin:0 0 12px">This issue is beginner-friendly. Want to help make the UI nicer? Open a PR with your changes.</p>
+        <div style="display:flex;gap:12px">
+          <a class="btn" href="https://github.com/gaurivvv/clubmate">View on GitHub</a>
+          <a class="btn ghost" href="https://github.com/gaurivvv/clubmate/issues">Open an issue</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>
+        <div style="font-weight:700">ClubMate</div>
+        <div class="muted" style="font-size:13px">Built with ❤️ for student clubs</div>
+      </div>
+      <div style="text-align:right">
+        <div class="muted">Repo: 
+          <a href="https://github.com/gaurivvv/clubmate" style="color:var(--accent);text-decoration:none">
+            github.com/gaurivvv/clubmate
+          </a>
+        </div>
+        <div class="muted" style="font-size:13px">
+          Contact: <a href="mailto:maintainer@example.com" style="color:var(--muted)">maintainer@example.com</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // smooth scroll for Explore button
+    document.querySelectorAll('a[href^=\"#\"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        e.preventDefault();
+        const target=document.querySelector(a.getAttribute('href'));
+        if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
+      })
+    })
+  </script>
+</body>
+</html>
