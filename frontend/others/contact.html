@@ -8,94 +8,145 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Basic Contact Form Styles (can be moved to styles.css or a new contact.css) */
-        .contact-section {
-            padding: 80px 0;
-            background-color: #f9f9f9;
-            text-align: center;
-        }
+    /* Contact Section */
+    .contact-section {
+        padding: 100px 0;
+        background: linear-gradient(135deg, #e6f7ff, #f9f9f9);
+        text-align: center;
+        font-family: 'Inter', sans-serif;
+    }
 
-        .contact-section .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+    .contact-section .container {
+        max-width: 850px;
+        margin: 0 auto;
+        padding: 0 25px;
+    }
 
-        .contact-section h2 {
-            font-size: 2.5rem;
-            color: #333;
-            margin-bottom: 20px;
-        }
+    .contact-section h2 {
+        font-size: 2.8rem;
+        font-weight: 700;
+        color: #222;
+        margin-bottom: 15px;
+    }
 
-        .contact-section p {
-            font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 40px;
-        }
+    .contact-section p {
+        font-size: 1.1rem;
+        color: #555;
+        margin-bottom: 50px;
+    }
 
-        .contact-form {
-            background-color: #fff;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            text-align: left;
-        }
+    /* Contact Form Card */
+    .contact-form {
+        background: #fff;
+        padding: 45px;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        text-align: left;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-        .form-group {
-            margin-bottom: 25px;
-        }
+    .contact-form:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    }
 
-        .form-group label {
-            display: block;
-            font-size: 1rem;
-            color: #555;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
+    /* Form Groups */
+    .form-group {
+        margin-bottom: 25px;
+    }
 
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-            color: #333;
-            box-sizing: border-box; /* Ensures padding doesn't increase total width */
-        }
+    .form-group label {
+        display: block;
+        font-size: 1rem;
+        color: #333;
+        margin-bottom: 10px;
+        font-weight: 600;
+    }
 
-        .form-group textarea {
-            resize: vertical; /* Allow vertical resizing */
-            min-height: 120px;
-        }
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 14px 16px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 1rem;
+        color: #333;
+        background: #fafafa;
+        transition: border 0.3s ease, box-shadow 0.3s ease;
+    }
 
-        .form-group input:focus,
-        .form-group textarea:focus {
-            border-color: #007bff;
-            outline: none;
-            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-        }
+    .form-group textarea {
+        resize: vertical;
+        min-height: 130px;
+    }
 
-        .form-message {
-            margin-top: 20px;
-            padding: 10px;
-            border-radius: 5px;
-            font-weight: 500;
-            display: none; /* Hidden by default */
-        }
+    .form-group input:focus,
+    .form-group textarea:focus {
+        border-color: #007bff;
+        background: #fff;
+        outline: none;
+        box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
+    }
 
-        .form-message.success {
-            background-color: #d4edda;
-            color: #155724;
-            border-color: #c3e6cb;
-        }
+    /* Submit Button */
+    .contact-form .btn {
+        display: inline-block;
+        width: 100%;
+        padding: 14px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        text-align: center;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
 
-        .form-message.error {
-            background-color: #f8d7da;
-            color: #721c24;
-            border-color: #f5c6cb;
+    .contact-form .btn-primary {
+        background: linear-gradient(135deg, #007bff, #0056d6);
+        color: #fff;
+        border: none;
+    }
+
+    .contact-form .btn-primary:hover {
+        background: linear-gradient(135deg, #0056d6, #0041a8);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(0, 91, 187, 0.25);
+    }
+
+    /* Form Message (Success/Error) */
+    .form-message {
+        margin-top: 20px;
+        padding: 12px;
+        border-radius: 6px;
+        font-weight: 500;
+        display: none;
+        animation: fadeIn 0.4s ease-in-out;
+    }
+
+    .form-message.success {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
+
+    .form-message.error {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
         }
-    </style>
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
 </head>
 <body>
     <header class="header">
@@ -169,13 +220,13 @@
                     <p>Open-source club management system for technical communities</p>
                     <div class="social-links">
                         <a href="https://github.com/sania28/clubmate" target="_blank">
-                            <i class="fab fa-github"></i>
+                            <i class="fab fa-github"></i>  GitHub  
                         </a>
                         <a href="#" target="_blank">
-                            <i class="fab fa-twitter"></i>
+                            <i class="fab fa-twitter"></i>  Twitter
                         </a>
                         <a href="#" target="_blank">
-                            <i class="fab fa-linkedin"></i>
+                            <i class="fab fa-linkedin"></i>  LinkedIn
                         </a>
                     </div>
                 </div>
