@@ -1,7 +1,7 @@
-/* Team Management Page Styles */
 body {
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     color: #333;
+    font-family: 'Inter', sans-serif;
 }
 
 .team-main {
@@ -63,11 +63,30 @@ body {
     margin-bottom: 0.5rem;
 }
 
+/* Role Badge Styles */
 .team-card-role {
-    font-size: 1.1rem;
-    color: #2563eb;
+    display: inline-block;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
     margin-bottom: 1.5rem;
-    font-weight: 500;
+}
+
+/* Role-specific colors */
+.team-card-role.core {
+    background-color: #e0f2fe;
+    color: #0284c7;
+}
+
+.team-card-role.lead {
+    background-color: #fef9c3;
+    color: #ca8a04;
+}
+
+.team-card-role.volunteer {
+    background-color: #dcfce7;
+    color: #16a34a;
 }
 
 .team-card-actions {
@@ -160,6 +179,7 @@ body {
 }
 
 .form-group input,
+.form-group select,
 .form-group textarea {
     width: 100%;
     padding: 0.8rem 1rem;
@@ -170,6 +190,7 @@ body {
 }
 
 .form-group input:focus,
+.form-group select:focus,
 .form-group textarea:focus {
     border-color: #2563eb;
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
@@ -177,9 +198,11 @@ body {
 }
 
 .no-members-msg {
-    grid-column: 1 / -1; /* Span across all columns */
+    grid-column: 1 / -1;
     text-align: center;
     font-size: 1.2rem;
     color: #64748b;
     padding: 3rem;
 }
+
+

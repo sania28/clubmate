@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalTitle = document.getElementById('modalTitle');
     const memberIndexInput = document.getElementById('memberIndex');
 
-    // Start with an empty array for team members
+    // Team members storage
     let teamMembers = [];
 
     // Function to render team members
@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <img src="${member.img}" alt="${member.name}" class="team-card-img">
                         <h3 class="team-card-name">${member.name}</h3>
                         <p class="team-card-role">${member.role}</p>
+                        <p class="team-card-bio">${member.bio || ''}</p>
                         <div class="team-card-actions">
                             <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
                             <button class="action-btn delete-btn"><i class="fas fa-trash-alt"></i></button>
@@ -52,12 +53,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Handle form submission for both add and edit
+    // Handle form submission for add & edit
     memberForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const memberData = {
             name: document.getElementById('memberName').value,
-            role: document.getElementById('memberRole').value,
+            role: document.getElementById('memberRole').value, // dropdown value
             img: document.getElementById('memberImg').value || 'https://i.pravatar.cc/150',
             bio: document.getElementById('memberBio').value
         };
@@ -75,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
         closeModal();
     });
 
-    // Event delegation for edit and delete buttons
+    // Event delegation for edit & delete buttons
     teamGrid.addEventListener('click', (e) => {
         const card = e.target.closest('.team-card');
         if (!card) return;
